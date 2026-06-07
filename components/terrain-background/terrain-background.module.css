@@ -1,0 +1,19 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: -1; /* Render above body background but behind layout/pages */
+  pointer-events: none; /* Let clicks pass through to elements below */
+  overflow: hidden;
+  background-color: var(--bg-color); /* Fills backdrop matching current theme */
+  transition: background-color 0.8s ease;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.85; /* Soft blend with page grids */
+}

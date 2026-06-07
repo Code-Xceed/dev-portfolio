@@ -1,0 +1,119 @@
+/* ==========================================================================
+   ADITYA PORTFOLIO - CORE DESIGN TOKENS & BASE RESETS
+   ========================================================================== */
+
+@import "../styles/tokens.css";
+
+/* Theme: Crumpled Charcoal Cursor Override */
+.theme-charcoal {
+  cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFMkVCRjAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNMyAzIEwyMSA5IEwxMyAxMyBMOSAyMSBaIiBmaWxsPSIjMTExNTIwIi8+PGxpbmUgeDE9IjMiIHkxPSIzIiB4Mj0iMTMiIHkyPSIzIi8+PC9zdmc+") 3 3, auto !important;
+}
+
+/* BASE RESETS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100dvh;
+  background-color: transparent;
+  color: var(--text-color);
+  font-family: var(--font-outfit);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Custom hand-drawn cursors scoped to desktop devices with pointer support */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body {
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMzQzJBMjEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBdPSJNMyAzIEwyMSA5IEwxMyAxMyBMOSAyMSBaIiBmaWxsPSIjRkNGQkUzIi8+PGxpbmUgeDE9IjMiIHkxPSIzIiB4Mj0iMTMiIHkyPSIxMyIvPjwvc3ZnPg==") 3 3, auto !important;
+  }
+
+  .theme-charcoal {
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFMkVCRjAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNMyAzIEwyMSA5IEwxMyAxMyBMOSAyMSBaIiBmaWxsPSIjMTExNTIwIi8+PGxpbmUgeDE9IjMiIHkxPSIzIiB4Mj0iMTMiIHkyPSIzIi8+PC9zdmc+") 3 3, auto !important;
+  }
+
+  a,
+  button,
+  [role="button"],
+  .audio-widget,
+  .bento-dock-item,
+  .polaroid-card,
+  .coffee-ring-stain,
+  .widget,
+  svg g[class^="letter-"],
+  #dock-btn-clean {
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2IiBmaWxsPSJub25lIiBzdHJva2U9IiMzQzJBMjEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCB0cmFuc2Zvcm09InJvdGF0ZSgtMTUgMTggMTgpIiBkPSJNMjguNjksMTQuMzN2NC44M2wtMi0uNDNWMTMuMjRhMTYuMTksMTYuMTksMCwwLDAtMi4zMy0uODR2NS44MmwtMi0uNDNWMTJjLTEuMS0uMTgtMi4xOC0uMy0zLjA4LS4zNnY1LjUxbC0yLS40M1YxMS40OGgwVjQuMzRhMi41MywyLjUzLDAsMCwwLTIuNi0yLjQzLDIuNTMsMi41MywwLDAsMC0yLjYsMi40M1YxNy4yN2gwdjIuNTlsLTIsMVYxNS42TDcuNzUsMTMuMjFhMi44MywyLjgzLDAsMCwwLTQsMCwyLjkzLDIuOTMsMCwwLDAsMCw0LjA5bDYsNy4xYTEwLjgyLDEwLjgyLDAsMCwwLDEuMzksNC4yMiw4LjQyLDguNDIsMCwwLDAsMi4yMSwyLjczdjIuNTZIMjcuNzlWMzAuNjJhMTIuNTQsMTIuNTQsMCwwLDAsMy04LjV2LTZBMTAsMTAsMCwwLDAsMjguNjksMTQuMzNaIiBmaWxsPSIjRkNGQkUzIi8+PC9zdmc+") 7 2, pointer !important;
+  }
+
+  .theme-charcoal a,
+  .theme-charcoal button,
+  .theme-charcoal [role="button"],
+  .theme-charcoal .audio-widget,
+  .theme-charcoal .bento-dock-item,
+  .theme-charcoal .polaroid-card,
+  .theme-charcoal .coffee-ring-stain,
+  .theme-charcoal .widget,
+  .theme-charcoal svg g[class^="letter-"],
+  .theme-charcoal #dock-btn-clean {
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2IiBmaWxsPSJub25lIiBzdHJva2U9IiNGNUY1RUQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCB0cmFuc2Zvcm09InJvdGF0ZSgtMTUgMTggMTgpIiBkPSJNMjguNjksMTQuMzN2NC44M2wtMi0uNDNWMTMuMjRhMTYuMTksMTYuMTksMCwwLDAtMi4zMy0uODR2NS44MmwtMi0uNDNWMTJjLTEuMS0uMTgtMi4xOC0uMy0zLjA4LS4zNnY1LjUxbC0yLS40M1YxMS40OGgwVjQuMzRhMi41MywyLjUzLDAsMCwwLTIuNi0yLjQzLDIuNTMsMi41MywwLDAsMC0yLjYsMi40M1YxNy4yN2gwdjIuNTlsLTIsMVYxNS42TDcuNzUsMTMuMjFhMi44MywyLjgzLDAsMCwwLTQsMCwyLjkzLDIuOTMsMCwwLDAsMCw0LjA5bDYsNy4xYTEwLjgyLDEwLjgyLDAsMCwwLDEuMzksNC4yMiw4LjQyLDguNDIsMCwwLDAsMi4yMSwyLjczdjIuNTZIMjcuNzlWMzAuNjJhMTIuNTQsMTIuNTQsMCwwLDAsMy04LjV2LTZBMTAsMTAsMCwwLDAsMjguNjksMTQuMzNaIiBmaWxsPSIjMkIyQjI5Ii8+PC9zdmc+") 7 2, pointer !important;
+  }
+}
+
+/* Tactile paper texture overlays */
+.paper-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.045;
+}
+
+.theme-charcoal .paper-overlay {
+  opacity: 0.07;
+}
+
+.noise-layer {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.folds-layer {
+  background: url(#paper-crumple-pattern);
+}
+
+/* Custom technical scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper-bg);
+  border-left: 1.5px solid var(--border-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border: 1.5px solid var(--paper-bg);
+  box-shadow: 1.5px 1.5px 0 var(--border-color);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}

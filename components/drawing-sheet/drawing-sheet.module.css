@@ -1,0 +1,48 @@
+.drawingSheet {
+  position: relative;
+  width: min(95vw, 1380px); /* 95% of viewport width up to 1380px max */
+  height: min(88dvh, 850px); /* 88% of dynamic viewport height up to 850px max */
+  margin: auto; /* Auto center within flex track panels */
+  padding: 0 var(--space-page-pad);
+  
+  /* Semi-translucent paper background to let wave lines shine through naturally */
+  background-color: rgba(var(--paper-bg-rgb), 0.45) !important;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 var(--border-color);
+  filter: var(--sketch-filter);
+  transform: translateZ(0);
+  
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scroll wrapper container */
+.scrollContainer {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: clamp(12px, 3dvh, 24px) 0;
+  position: relative;
+  z-index: 2;
+  
+  mask-image: linear-gradient(to bottom, transparent 0%, black 35px, black calc(100% - 35px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 35px, black calc(100% - 35px), transparent 100%);
+}
+
+@media (max-width: 1024px) {
+  .scrollContainer {
+    overflow-y: auto !important;
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .drawingSheet {
+    width: 95vw;
+    height: 90dvh;
+    padding: 0 12px;
+  }
+}

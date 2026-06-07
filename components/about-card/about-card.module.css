@@ -1,0 +1,191 @@
+.container {
+  position: absolute;
+  top: 40px;
+  right: 16px;
+  z-index: 5;
+  width: 100%;
+  max-width: 360px;
+  transform: rotate(1.5deg);
+  pointer-events: auto;
+}
+
+.aboutCard {
+  position: relative;
+  background-color: var(--paper-bg);
+  /* Elegant grid paper background */
+  background-image:
+    linear-gradient(90deg, rgba(var(--border-rgb), 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(var(--border-rgb), 0.035) 1px, transparent 1px);
+  background-size: 18px 18px;
+  background-position: center;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 24px 22px 24px 42px;
+  /* Extra left padding for holes and margin line */
+  box-shadow: 4px 5px 0 var(--border-color);
+  filter: var(--sketch-filter);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.aboutCard:hover {
+  transform: rotate(-0.5deg) scale(1.01);
+  box-shadow: 6px 8px 0 var(--border-color);
+}
+
+/* Punched binder rings holes showing desk beneath */
+.binderHoles {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 22px 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hole {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  /* Shows desk backdrop */
+  border: 1.5px solid var(--border-color);
+  box-shadow: inset 1px 1px 2px rgba(60, 42, 33, 0.2);
+  transition: background 0.3s ease;
+}
+
+:global(.theme-charcoal) .hole {
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Header metadata block */
+.aboutMetadata {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8.5px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-light);
+  letter-spacing: 0.8px;
+  margin-bottom: 12px;
+  border-bottom: 0.8px dashed rgba(var(--border-rgb), 0.15);
+  padding-bottom: 4px;
+  opacity: 0.85;
+}
+
+/* Horizontal ledger handwriting guidelines */
+.aboutCardLines {
+  background-image: linear-gradient(rgba(var(--border-rgb), 0.075) 1px, transparent 1px);
+  background-size: 100% 26.5px;
+  /* Aligned with line-height */
+  background-position: 0 6px;
+  padding-top: 2px;
+}
+
+.aboutRevealText {
+  font-family: var(--font-hand);
+  font-size: 17.5px;
+  /* Premium handwriting size */
+  line-height: 26.5px;
+  /* Synchronized with guidelines background */
+  color: var(--text-color);
+  text-shadow: 0.3px 0.3px 0.5px rgba(var(--border-rgb), 0.15);
+  /* Soft graphite smudging */
+  margin: 0;
+}
+
+/* Premium highlighter marker accent with wobbly sketch border */
+.highlightDoodle {
+  position: relative;
+  display: inline-block;
+  padding: 0 4px;
+  margin: 0 -2px;
+  color: var(--text-color);
+  font-weight: bold;
+  z-index: 1;
+}
+
+.highlightDoodle::before {
+  content: '';
+  position: absolute;
+  top: 4%;
+  left: 0;
+  right: 0;
+  bottom: 8%;
+  background: var(--highlighter);
+  opacity: 0.28;
+  /* Translucent highlighter smudge */
+  border-radius: 4px 10px 4px 8px;
+  transform: rotate(-1deg) skewX(-4deg);
+  z-index: -1;
+  pointer-events: none;
+}
+
+:global(.theme-charcoal) .highlightDoodle::before {
+  opacity: 0.42;
+  background: var(--highlight-color);
+}
+
+/* Sketchy round blueprint stamped seal in bottom-right corner */
+.aboutStampSeal {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  width: 72px;
+  height: 72px;
+  opacity: 0.82;
+  pointer-events: none;
+  transform: rotate(6deg);
+  z-index: 2;
+  transition: transform 0.4s ease;
+}
+
+.aboutCard:hover .aboutStampSeal {
+  transform: rotate(-8deg) scale(1.05);
+}
+
+.tapeStrip {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 95px;
+  height: 22px;
+  background: rgba(250, 240, 215, 0.7);
+  border: 0.8px solid rgba(60, 42, 33, 0.15);
+  filter: var(--sketch-filter);
+  z-index: 3;
+}
+
+:global(.theme-charcoal) .tapeStrip {
+  background: rgba(60, 60, 58, 0.6);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Responsiveness overrides */
+@media (max-width: 1024px) {
+  .container {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    margin: 40px auto 20px auto;
+    max-width: 100%;
+    transform: none;
+    order: 3;
+  }
+  
+  .aboutCard {
+    padding: var(--space-card-pad);
+    padding-left: calc(var(--space-card-pad) + 12px);
+  }
+  
+  .aboutStampSeal {
+    width: clamp(44px, 12vw, 68px);
+    height: clamp(44px, 12vw, 68px);
+  }
+}

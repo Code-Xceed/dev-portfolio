@@ -1,0 +1,98 @@
+.container {
+  display: inline-flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 24px;
+  z-index: 10;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.tagline {
+  font-family: var(--font-fira-code), monospace;
+  font-size: clamp(0.65rem, 0.55rem + 0.4vw, 0.8rem);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-light);
+  opacity: 0.85;
+  margin-bottom: 2px;
+  margin-left: 4px;
+  transform: translateZ(0);
+}
+
+.nameWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.firstName {
+  font-family: var(--font-dancing-script), var(--font-caveat), cursive;
+  font-size: clamp(3.6rem, 2.8rem + 3.6vw, 6.2rem);
+  font-weight: 800;
+  line-height: 0.95;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  filter: var(--sketch-filter);
+  letter-spacing: 0.02em;
+}
+
+.letter {
+  display: inline-block;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.lastName {
+  position: absolute;
+  bottom: -22px;
+  right: -35px;
+  font-family: var(--font-caveat), cursive;
+  font-size: clamp(1.8rem, 1.4rem + 1.2vw, 2.7rem);
+  font-weight: 800;
+  color: var(--highlight-color);
+  transform: rotate(-5deg);
+  filter: var(--sketch-filter);
+  cursor: pointer;
+}
+
+/* Theme overrides for Charcoal mode */
+:global(.theme-charcoal) .tagline {
+  color: var(--text-light);
+  opacity: 0.75;
+}
+
+:global(.theme-charcoal) .lastName {
+  color: var(--highlight-color);
+}
+
+:global(.theme-charcoal) .lastName:hover {
+  color: #FFFFFF;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    margin: 20px auto 10px auto !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    margin: 15px auto 5px auto !important;
+  }
+  
+  .lastName {
+    bottom: -15px;
+    right: -12px;
+  }
+}
