@@ -92,3 +92,26 @@
     right: -12px;
   }
 }
+
+/* Extra small mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .container {
+    margin: 0 auto 15px auto !important;
+  }
+
+  .tagline {
+    font-size: clamp(0.6rem, 0.55rem + 0.3vw, 0.75rem);
+    margin-bottom: 1px;
+  }
+
+  .firstName {
+    font-size: clamp(2.8rem, 2.2rem + 3vw, 5rem);
+    line-height: 0.92;
+  }
+
+  .lastName {
+    font-size: clamp(1.4rem, 1rem + 1vw, 2rem);
+    bottom: -12px;
+    right: -8px;
+  }
+}

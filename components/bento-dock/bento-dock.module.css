@@ -254,3 +254,32 @@
     width: 38px !important;
   }
 }
+
+/* Extra small mobile (320px-480px) */
+@media (max-width: 480px) {
+  .dockNav {
+    bottom: 6px !important;
+  }
+
+  .dockWrapper {
+    gap: 6px !important;
+    padding: 5px 10px !important;
+    box-shadow: 0px 6px 16px rgba(60, 42, 33, 0.12) !important;
+  }
+
+  .charcoal .dockWrapper {
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .dockItem {
+    width: 34px !important;
+    height: 34px !important;
+    border: 1.2px solid var(--border-color) !important;
+    box-shadow: 1.5px 1.5px 0 var(--border-color) !important;
+  }
+
+  .dockItem .dockIcon svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+}
