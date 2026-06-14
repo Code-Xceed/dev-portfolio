@@ -1,0 +1,644 @@
+/* CSS Module for Projects Section */
+
+.projectsLayout {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 0.65fr 0.35fr;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px 20px 30px;
+  box-sizing: border-box;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* Left Spiral pane */
+.projectSpiralPane {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.projectSpiralCanvas {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 480px;
+  border: none;
+  border-radius: 2px;
+  perspective: 850px;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  top: -20px;
+}
+
+.projectsSpiralTrack {
+  position: relative;
+  width: 220px;
+  height: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.projectsSpiralCard {
+  position: absolute;
+  width: 210px;
+  height: 168px;
+  background: var(--paper-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 4px 4px 0 var(--border-color);
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Wobbly drafting tape on top of each card */
+.projectsSpiralCard::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 62px;
+  height: 15px;
+  background: rgba(228, 224, 204, 0.65);
+  backdrop-filter: blur(0.5px);
+  clip-path: polygon(
+    0% 15%, 4% 0%, 96% 3%, 100% 15%, 
+    98% 85%, 95% 100%, 5% 97%, 0% 85%
+  );
+  pointer-events: none;
+  z-index: 10;
+  border-left: 1.5px dashed rgba(var(--border-rgb), 0.15);
+  border-right: 1.5px dashed rgba(var(--border-rgb), 0.15);
+  mix-blend-mode: multiply;
+}
+
+:global(.theme-charcoal) .projectsSpiralCard::after {
+  background: rgba(80, 80, 78, 0.5);
+  border-left: 1.5px dashed rgba(245, 245, 237, 0.15);
+  border-right: 1.5px dashed rgba(245, 245, 237, 0.15);
+  box-shadow: none;
+  mix-blend-mode: screen;
+}
+
+/* Hover effects removed from card, only active card gets high-end highlighted border */
+.projectsSpiralCard.active {
+  border-color: var(--highlight-color);
+  box-shadow: 0 0 12px rgba(var(--highlight-rgb, 218, 92, 53), 0.25), 4px 4px 0 var(--highlight-color);
+}
+
+.projectsSpiralCard .cardVisual {
+  flex: 1;
+  background: var(--paper-bg);
+  border: 1px solid rgba(var(--border-rgb), 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.projectsSpiralCard .polaroidCaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  font-weight: bold;
+  color: var(--text-color);
+  border-top: 1px dashed rgba(var(--border-rgb), 0.1);
+  padding-top: 6px;
+}
+
+.captionText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.captionStatus {
+  font-size: 9px;
+  color: var(--highlight-color);
+}
+
+/* Right Specs notepad pane - shifted to the right */
+.projectSpecsPane {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  margin-top: 15px;
+  margin-left: 48px;
+}
+
+.projectSpecsCard {
+  width: 100%;
+  max-width: 380px;
+  min-width: 320px;
+  min-height: 400px;
+  position: relative;
+  padding: 45px 30px 30px 48px;
+  transform: rotate(-1.5deg);
+  transform-style: preserve-3d;
+  box-sizing: border-box;
+  box-shadow: 6px 6px 0 var(--border-color) !important;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  
+  /* Ruled notebook sheets */
+  background: var(--paper-bg) linear-gradient(
+    rgba(var(--border-rgb), 0.075) 1px,
+    transparent 1px
+  );
+  background-size: 100% 28px;
+  background-position: 0 32px;
+}
+
+/* Ruled notebook margin line */
+.projectSpecsCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 36px;
+  width: 1.5px;
+  background: rgba(var(--highlight-rgb, 218, 92, 53), 0.25);
+  pointer-events: none;
+}
+
+.projectSpecsCard .binderHoles {
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 40px 0;
+  pointer-events: none;
+}
+
+.projectSpecsCard .hole {
+  width: 12px;
+  height: 12px;
+  background: var(--bg-color); /* Punched hole transparency simulation */
+  border: 1.5px solid var(--border-color);
+  border-radius: 50%;
+  box-shadow: inset 1.5px 1.5px 2px rgba(0, 0, 0, 0.25);
+  position: relative;
+  transition: background-color 0.4s ease;
+}
+
+/* 3D wire loops binding the sketchbook sheet */
+.projectSpecsCard .hole::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -22px;
+  width: 26px;
+  height: 15px;
+  border: 1.8px solid var(--border-color);
+  border-bottom: none;
+  border-radius: 13px 13px 0 0;
+  transform: translateY(-50%) rotate(-30deg);
+  pointer-events: none;
+  z-index: 20;
+  box-shadow: 1px 2px 2px rgba(60, 42, 33, 0.12);
+}
+
+:global(.theme-charcoal) .projectSpecsCard .hole::after {
+  border-color: rgba(245, 245, 237, 0.6);
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.aboutMetadata {
+  margin-bottom: 12px;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  animation: projectAboutFadeIn 0.3s ease-out forwards;
+}
+
+.aboutContentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: projectAboutSlideIn 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.specsTitle {
+  color: var(--highlight-color);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.specsText {
+  font-size: 16px;
+  line-height: 28px; /* Locks text rows to the notebook sheets */
+  font-weight: bold;
+  min-height: 112px; /* Exactly 4 ruled lines of space */
+  margin-bottom: 15px;
+}
+
+@keyframes projectAboutFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes projectAboutSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Skills / Tech Stack Pills */
+.projSkillsPills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 5px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1.2px dashed rgba(var(--border-rgb), 0.25);
+  position: relative;
+}
+
+.projSkillsLabel {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--highlight-color);
+  opacity: 0.7;
+  margin-right: 2px;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.projSkillPill {
+  --pill-rot: 0deg;
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border: 1.2px dashed rgba(var(--border-rgb), 0.45);
+  border-radius: 14px;
+  color: var(--text-light);
+  background: rgba(var(--border-rgb), 0.04);
+  transform: rotate(var(--pill-rot));
+  opacity: 0;
+  animation: skillPillIn 0.35s ease-out forwards;
+  cursor: default;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+  position: relative;
+  line-height: 1;
+}
+
+.projSkillPill::before {
+  content: '›';
+  margin-right: 4px;
+  color: var(--highlight-color);
+  font-weight: bold;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.projSkillPill:hover {
+  background: rgba(var(--border-rgb), 0.1);
+  border-color: var(--highlight-color);
+  color: var(--highlight-color);
+  border-style: solid;
+}
+
+:global(.theme-charcoal) .projSkillPill {
+  background: rgba(56, 189, 248, 0.04);
+  border-color: rgba(56, 189, 248, 0.25);
+  color: #E2E8F0;
+}
+
+:global(.theme-charcoal) .projSkillPill:hover {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: var(--highlight-color);
+  color: var(--highlight-color);
+}
+
+@keyframes skillPillIn {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--pill-rot)) translateY(6px) scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(var(--pill-rot)) translateY(0) scale(1);
+  }
+}
+
+.aboutStampSeal {
+  position: absolute;
+  bottom: 12px;
+  right: 15px;
+  width: 68px;
+  height: 68px;
+  opacity: 0;
+  transform: rotate(8deg) scale(0.85);
+  pointer-events: none;
+  animation: sealStampFresh 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation-delay: 0.1s;
+  mix-blend-mode: multiply;
+}
+
+:global(.theme-charcoal) .aboutStampSeal {
+  mix-blend-mode: screen;
+}
+
+.aboutStampSeal svg {
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center;
+}
+
+.projectSpecsCard:hover .aboutStampSeal svg {
+  transform: rotate(18deg) scale(1.06);
+}
+
+@keyframes sealStampFresh {
+  to {
+    opacity: 0.85;
+    transform: rotate(8deg) scale(1);
+  }
+}
+
+/* Cylinder Guide Rings */
+.blueprintCylinderGuides {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  z-index: 1;
+}
+
+.cylinderGuideSvg {
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  top: 50%;
+  left: 50%;
+  margin-top: -165px;
+  margin-left: -165px;
+  fill: none;
+  stroke: var(--highlight-color);
+  stroke-width: 0.6;
+  opacity: 0.12;
+}
+
+.topGuide {
+  transform: rotateX(90deg) translateZ(80px);
+}
+
+.bottomGuide {
+  transform: rotateX(90deg) translateZ(-80px);
+}
+
+
+
+/* Mobile Header */
+.projectsMobileHeader {
+  display: none;
+}
+
+/* Blueprint Line Drawing Accents on Card Visuals */
+.blueprintVectorSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Tape on Active Card */
+.projectsSpiralCard .tapeStrip {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2deg);
+  width: 74px;
+  height: 18px;
+  background: rgba(220, 215, 200, 0.55);
+  border-left: 1.5px dashed rgba(var(--border-rgb), 0.2);
+  border-right: 1.5px dashed rgba(var(--border-rgb), 0.2);
+  backdrop-filter: blur(0.5px);
+  clip-path: polygon(
+    0% 20%, 6% 0%, 94% 5%, 100% 20%, 
+    97% 80%, 93% 100%, 7% 95%, 0% 80%
+  );
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  mix-blend-mode: multiply;
+}
+
+:global(.theme-charcoal) .projectsSpiralCard .tapeStrip {
+  background: rgba(100, 100, 98, 0.45);
+  border-left: 1.5px dashed rgba(255, 255, 255, 0.15);
+  border-right: 1.5px dashed rgba(255, 255, 255, 0.15);
+  mix-blend-mode: screen;
+}
+
+.projectsSpiralCard.active .tapeStrip {
+  opacity: 1;
+}
+
+/* Mobile details popup modal */
+.projectPopupBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: rgba(var(--paper-bg-rgb), 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.projectPopupBackdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.projectPopupCard {
+  width: 90%;
+  max-width: 360px;
+  padding: 40px 24px 24px 48px !important;
+  transform-style: preserve-3d;
+  box-shadow: 10px 10px 0 var(--border-color) !important;
+}
+
+/* Charcoal Theme specific shadows */
+:global(.theme-charcoal) .projectsSpiralCard {
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+:global(.theme-charcoal) .projectSpecsCard {
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* RESPONSIVENESS OVERRIDES */
+@media (max-width: 1024px) {
+  .projectsLayout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding: 15px;
+    gap: 30px;
+  }
+
+  .projectSpecsPane {
+    display: flex;
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .projectsMobileHeader {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .projectsMobileHeader h2 {
+    font-size: 24px;
+    margin: 0 0 4px 0;
+    color: var(--text-color);
+  }
+
+  .projectsMobileHeader :global(.header-line) {
+    height: 1px;
+    background: var(--border-color);
+    width: 60px;
+    opacity: 0.6;
+  }
+
+  .projectSpiralCanvas {
+    height: 340px;
+  }
+
+  .projectsSpiralCard {
+    left: 50% !important;
+    top: 50% !important;
+    margin-left: -105px !important;
+    margin-top: -84px !important;
+  }
+}
+
+/* Dynamic Infinite Ticker Strip */
+.projectsTickerStrip {
+  grid-column: 1 / -1;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 1.5px dashed rgba(var(--border-rgb), 0.3);
+  border-bottom: 1.5px dashed rgba(var(--border-rgb), 0.3);
+  padding: 10px 0;
+  background: rgba(var(--border-rgb), 0.015);
+  margin-top: -5px;
+  margin-bottom: 10px;
+  position: relative;
+  transform: rotate(-0.3deg);
+  mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+}
+
+.projectsTickerStrip::before,
+.projectsTickerStrip::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-image: linear-gradient(to right, rgba(var(--border-rgb), 0.25) 1px, transparent 1px);
+  background-size: 8px 100%;
+  opacity: 0.6;
+}
+
+.projectsTickerStrip::before {
+  top: 0;
+}
+
+.projectsTickerStrip::after {
+  bottom: 0;
+}
+
+.projectsTickerWrap {
+  display: flex;
+  width: max-content;
+  animation: projectsMarquee 35s linear infinite;
+  will-change: transform;
+}
+
+.projectsTickerContent {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  padding-right: 35px;
+  flex-shrink: 0;
+}
+
+.tickerTerm {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tickerTerm::after {
+  content: "⌖";
+  color: var(--highlight-color);
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+@keyframes projectsMarquee {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+

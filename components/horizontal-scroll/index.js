@@ -1,38 +1,47 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import gsap from "gsap";
 import styles from "./horizontal-scroll.module.css";
 
-export default function HorizontalScroll({ children, pagesCount = 3 }) {
+export default function HorizontalScroll({ children, pagesCount = 3, activePage, onPageChange }) {
   const containerRef = useRef(null);
   const trackRef = useRef(null);
-  const [currentPage, setCurrentPage] = useState(0);
 
   const currentPageRef = useRef(0);
   const lastSwitchAtRef = useRef(0);
   const wheelAccumulatorRef = useRef(0);
   const wheelTimeoutRef = useRef(null);
+  const innerWidthRef = useRef(typeof window !== 'undefined' ? window.innerWidth : 1025);
 
-  const goToPage = (pageIndex) => {
-    if (window.innerWidth <= 1024) return;
+  const goToPage = useCallback((pageIndex) => {
+    if (innerWidthRef.current <= 1024) return;
     const clampedIndex = Math.max(0, Math.min(pagesCount - 1, pageIndex));
     if (clampedIndex === currentPageRef.current) return;
 
     currentPageRef.current = clampedIndex;
-    setCurrentPage(clampedIndex);
     lastSwitchAtRef.current = performance.now();
     wheelAccumulatorRef.current = 0;
 
     const track = trackRef.current;
     if (track) {
       gsap.to(track, {
-        x: `-${clampedIndex * 100}vw`,
+        x: `-${clampedIndex * (100 / pagesCount)}%`,
         duration: 0.8,
         ease: "power3.out",
       });
     }
-  };
+
+    if (onPageChange) {
+      onPageChange(clampedIndex);
+    }
+  }, [pagesCount, onPageChange]);
+
+  useEffect(() => {
+    if (activePage !== undefined && activePage !== currentPageRef.current) {
+      goToPage(activePage);
+    }
+  }, [activePage]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -40,7 +49,7 @@ export default function HorizontalScroll({ children, pagesCount = 3 }) {
     if (!container || !track) return;
 
     const handleWheel = (e) => {
-      if (window.innerWidth <= 1024) return;
+      if (innerWidthRef.current <= 1024) return;
       // 1. Check for scrollable elements inside to prevent hijacking their scrolling
       const target = e.target;
       let isInsideScrollable = false;
@@ -110,7 +119,7 @@ export default function HorizontalScroll({ children, pagesCount = 3 }) {
     let touchTracking = false;
 
     const handleTouchStart = (e) => {
-      if (window.innerWidth <= 1024) return;
+      if (innerWidthRef.current <= 1024) return;
       if (e.touches.length !== 1) return;
 
       // Ignore touch gestures on scrollable inner elements
@@ -135,7 +144,7 @@ export default function HorizontalScroll({ children, pagesCount = 3 }) {
     };
 
     const handleTouchMove = (e) => {
-      if (window.innerWidth <= 1024) return;
+      if (innerWidthRef.current <= 1024) return;
       if (!touchTracking || e.touches.length !== 1) return;
 
       const now = performance.now();
@@ -165,7 +174,7 @@ export default function HorizontalScroll({ children, pagesCount = 3 }) {
     };
 
     const handleKeyDown = (e) => {
-      if (window.innerWidth <= 1024) return;
+      if (innerWidthRef.current <= 1024) return;
       const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
       if (activeTag === 'input' || activeTag === 'textarea' || activeTag === 'select') return;
 
@@ -188,12 +197,13 @@ export default function HorizontalScroll({ children, pagesCount = 3 }) {
     };
 
     const handleResize = () => {
-      if (window.innerWidth <= 1024) {
+      innerWidthRef.current = window.innerWidth;
+      if (innerWidthRef.current <= 1024) {
         gsap.set(track, { clearProps: "transform" });
         return;
       }
       gsap.set(track, {
-        x: `-${currentPageRef.current * 100}vw`
+        x: `-${currentPageRef.current * (100 / pagesCount)}%`
       });
     };
 
@@ -225,7 +235,7 @@ export default function HorizontalScroll({ children, pagesCount = 3 }) {
       <div 
         className={styles.scrollTrack} 
         ref={trackRef}
-        style={{ width: `${pagesCount * 100}vw` }}
+        style={{ width: `${pagesCount * 100}%` }}
       >
         {children}
       </div>

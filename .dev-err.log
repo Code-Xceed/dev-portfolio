@@ -1,0 +1,847 @@
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\Aditya\Desktop\Porfolio redesign\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\Aditya\Desktop\Porfolio redesign\portfolio-next\package-lock.json
+
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.js">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="fira_code_...">
+                          <body
++                           className="theme-grid"
+-                           className="theme-grid theme-charcoal"
+                          >
+                  ...
+ 
+    at <unknown> (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:3439:25)
+    at runWithFiberInDEV (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:965:74)
+    at emitPendingHydrationWarnings (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:3438:13)
+    at completeWork (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:6885:102)
+    at runWithFiberInDEV (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:965:131)
+    at completeUnitOfWork (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9622:23)
+    at performUnitOfWork (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9551:58)
+    at renderRootConcurrent (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9534:71)
+    at performWorkOnRoot (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_1sno1il._.js:2647:64) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:3439:25)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.js">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="fira_code_...">
+                          <body
++                           className="theme-grid"
+-                           className="theme-grid theme-charcoal"
+                          >
+                  ...
+ 
+    at <unknown> (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:3439:25)
+    at runWithFiberInDEV (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:965:74)
+    at emitPendingHydrationWarnings (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:3438:13)
+    at completeWork (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:6885:102)
+    at runWithFiberInDEV (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:965:131)
+    at completeUnitOfWork (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9622:23)
+    at performUnitOfWork (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9551:58)
+    at renderRootConcurrent (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9534:71)
+    at performWorkOnRoot (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_1sno1il._.js:2647:64) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:3439:25)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.js">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="fira_code_...">
+                          <body
++                           className="theme-grid"
+-                           className="theme-grid theme-charcoal"
+                          >
+                  ...
+ 
+    at <unknown> (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:3439:25)
+    at runWithFiberInDEV (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:965:74)
+    at emitPendingHydrationWarnings (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:3438:13)
+    at completeWork (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:6885:102)
+    at runWithFiberInDEV (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:965:131)
+    at completeUnitOfWork (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9622:23)
+    at performUnitOfWork (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9551:58)
+    at renderRootConcurrent (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9534:71)
+    at performWorkOnRoot (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_1sno1il._.js:2647:64) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-dom_1qa7tnd._.js:3439:25)
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] Uncaught Error: ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  3 | import { AudioProvider } from "../context/audio-context";
+  4 | import TerrainBackground from "../components/terrain-background";
+> 5 | import ThemeTransitionOverlay from "../components/theme-transition-overlay";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import "./globals.css";
+  7 |
+  8 | const firaCode = Fira_Code({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./portfolio-next/app/layout.js:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./portfolio-next/app/layout.js:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+⨯ ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  [90m3 |[0m [36mimport[0m { [33mAudioProvider[0m } [36mfrom[0m [32m"../context/audio-context"[0m;
+  [90m4 |[0m [36mimport[0m [33mTerrainBackground[0m [36mfrom[0m [32m"../components/terrain-background"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mThemeTransitionOverlay[0m [36mfrom[0m [32m"../components/theme-transition-overlay"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mconst[0m firaCode = [33mFira_Code[0m({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] Uncaught Error: ./portfolio-next/app/layout.js:5:1
+Module not found: Can't resolve '../components/theme-transition-overlay'
+  3 | import { AudioProvider } from "../context/audio-context";
+  4 | import TerrainBackground from "../components/terrain-background";
+> 5 | import ThemeTransitionOverlay from "../components/theme-transition-overlay";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import "./globals.css";
+  7 |
+  8 | const firaCode = Fira_Code({
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./portfolio-next/app/layout.js:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./portfolio-next/app/layout.js:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+⨯ ReferenceError: ThemeTransitionOverlay is not defined
+    at RootLayout (app\layout.js:61:14)
+  59 |             {/* Renders nothing until a theme transition is requested,
+  60 |                 then mounts the wobbly expanding-circle overlay. */}
+> 61 |             <ThemeTransitionOverlay />
+     |              ^
+  62 |           </AudioProvider>
+  63 |         </ThemeProvider>
+  64 |          {
+  digest: '4105378758'
+}
+[browser] Uncaught ReferenceError: ThemeTransitionOverlay is not defined
+    at RootLayout (app\layout.js:61:14)
+    at resolveErrorDev (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-server-dom-turbopack_17s9wle._.js:1919:105)
+    at processFullStringRow (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-server-dom-turbopack_17s9wle._.js:2434:29)
+    at processFullBinaryRow (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-server-dom-turbopack_17s9wle._.js:2393:9)
+    at processBinaryChunk (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-server-dom-turbopack_17s9wle._.js:2502:221)
+    at progress (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-server-dom-turbopack_17s9wle._.js:2689:13)
+  59 |             {/* Renders nothing until a theme transition is requested,
+  60 |                 then mounts the wobbly expanding-circle overlay. */}
+> 61 |             <ThemeTransitionOverlay />
+     |              ^
+  62 |           </AudioProvider>
+  63 |         </ThemeProvider>
+  64 |         
+⨯ ReferenceError: ThemeTransitionOverlay is not defined
+    at RootLayout (app\layout.js:61:14)
+  59 |             {/* Renders nothing until a theme transition is requested,
+  60 |                 then mounts the wobbly expanding-circle overlay. */}
+> 61 |             <ThemeTransitionOverlay />
+     |              ^
+  62 |           </AudioProvider>
+  63 |         </ThemeProvider>
+  64 |          {
+  digest: '4105378758'
+}
+[browser] Uncaught ReferenceError: ThemeTransitionOverlay is not defined
+    at RootLayout (app\layout.js:61:14)
+    at resolveErrorDev (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-server-dom-turbopack_17s9wle._.js:1919:105)
+    at processFullStringRow (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-server-dom-turbopack_17s9wle._.js:2434:29)
+    at processFullBinaryRow (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-server-dom-turbopack_17s9wle._.js:2393:9)
+    at processBinaryChunk (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-server-dom-turbopack_17s9wle._.js:2502:221)
+    at progress (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_react-server-dom-turbopack_17s9wle._.js:2689:13)
+  59 |             {/* Renders nothing until a theme transition is requested,
+  60 |                 then mounts the wobbly expanding-circle overlay. */}
+> 61 |             <ThemeTransitionOverlay />
+     |              ^
+  62 |           </AudioProvider>
+  63 |         </ThemeProvider>
+  64 |         
+⚠ Fast Refresh had to perform a full reload when ./portfolio-next/context/audio-context.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload when ./portfolio-next/context/audio-context.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload when ./portfolio-next/context/theme-context.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload when ./portfolio-next/components/theme-ruler-overlay/index.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload when ./portfolio-next/context/theme-context.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload when ./portfolio-next/context/theme-context.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload when ./portfolio-next/context/theme-context.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+    at dispatchAppRouterAction (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:916:37)
+    at <unknown> (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:11923:61)
+    at startTransition (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_1sno1il._.js:1279:31)
+    at Object.hmrRefresh (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:11922:40)
+    at <unknown> (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:14090:64)
+    at startTransition (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_compiled_1sno1il._.js:1279:31)
+    at processMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:14089:44)
+    at WebSocket.handleMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13458:52)
+⚠ Fast Refresh had to perform a full reload when ./portfolio-next/context/theme-context.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload when ./portfolio-next/context/theme-context.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[browser] ⨯ unhandledRejection: TimeoutError: Transition was aborted because of timeout in DOM update
+
+[browser] ⨯ unhandledRejection: InvalidStateError: Transition was aborted because of invalid state
+
+[browser] ⨯ unhandledRejection: TimeoutError: Transition was aborted because of timeout in DOM update
+
+[browser] ⨯ unhandledRejection: InvalidStateError: Transition was aborted because of invalid state
+
+⚠ Fast Refresh had to perform a full reload when ./portfolio-next/context/theme-context.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload when ./portfolio-next/context/theme-context.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[browser] ./portfolio-next/app/globals.css:68:1
+Parsing CSS source code failed
+  66 |     cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9...
+  67 |   }
+> 68 | }
+     | ^
+  69 |
+  70 | /* Tactile paper texture overlays */
+  71 | .paper-overlay {
+
+Invalid empty selector
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:68:1
+  66 |     cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9...
+  67 |   }
+> 68 | }
+     | ^
+  69 |
+  70 | /* Tactile paper texture overlays */
+  71 | .paper-overlay {
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component] 
+    at handleErrors (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+    at processMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:14014:21)
+    at WebSocket.handleMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13458:52) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+[browser] ./portfolio-next/app/globals.css:153:1
+Parsing CSS source code failed
+  151 |   }
+  152 | }
+> 153 |
+      | ^
+
+Unexpected end of input
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:153:1
+  151 |   }
+  152 | }
+> 153 |
+      | ^
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component] 
+    at handleErrors (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+    at processMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:14014:21)
+    at WebSocket.handleMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13458:52) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+[browser] ./portfolio-next/app/globals.css:68:1
+Parsing CSS source code failed
+  66 |     cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9...
+  67 |   }
+> 68 | }
+     | ^
+  69 |
+  70 | /* Tactile paper texture overlays */
+  71 | .paper-overlay {
+
+Invalid empty selector
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:68:1
+  66 |     cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9...
+  67 |   }
+> 68 | }
+     | ^
+  69 |
+  70 | /* Tactile paper texture overlays */
+  71 | .paper-overlay {
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component] 
+    at handleErrors (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+    at processMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:14014:21)
+    at WebSocket.handleMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13458:52) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+[browser] ./portfolio-next/app/globals.css:153:1
+Parsing CSS source code failed
+  151 |   }
+  152 | }
+> 153 |
+      | ^
+
+Unexpected end of input
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:153:1
+  151 |   }
+  152 | }
+> 153 |
+      | ^
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component] 
+    at handleErrors (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+    at processMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:14014:21)
+    at WebSocket.handleMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13458:52) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+[browser] ./portfolio-next/app/globals.css:68:1
+Parsing CSS source code failed
+  66 |     cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9...
+  67 |   }
+> 68 | }
+     | ^
+  69 |
+  70 | /* Tactile paper texture overlays */
+  71 | .paper-overlay {
+
+Invalid empty selector
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:68:1
+  66 |     cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9...
+  67 |   }
+> 68 | }
+     | ^
+  69 |
+  70 | /* Tactile paper texture overlays */
+  71 | .paper-overlay {
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component] 
+    at handleErrors (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+    at processMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:14014:21)
+    at WebSocket.handleMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13458:52) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+[browser] ./portfolio-next/app/globals.css:153:1
+Parsing CSS source code failed
+  151 |   }
+  152 | }
+> 153 |
+      | ^
+
+Unexpected end of input
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:153:1
+  151 |   }
+  152 | }
+> 153 |
+      | ^
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component] 
+    at handleErrors (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+    at processMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:14014:21)
+    at WebSocket.handleMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13458:52) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+[browser] ./portfolio-next/app/globals.css:152:1
+Parsing CSS source code failed
+  150 |   }
+  151 | }
+> 152 |
+      | ^
+
+Unexpected end of input
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:152:1
+  150 |   }
+  151 | }
+> 152 |
+      | ^
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component] 
+    at handleErrors (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+    at processMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:14014:21)
+    at WebSocket.handleMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13458:52) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+⨯ ./portfolio-next/app/globals.css:152:1
+Parsing CSS source code failed
+  [90m150 |[0m   }
+  [90m151 |[0m }
+[31m[1m>[0m [90m152 |[0m
+  [90m    |[0m [31m[1m^[0m
+
+Unexpected end of input
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:152:1
+  [90m150 |[0m   }
+  [90m151 |[0m }
+[31m[1m>[0m [90m152 |[0m
+  [90m    |[0m [31m[1m^[0m
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component]
+
+
+[browser] ./portfolio-next/app/globals.css:152:1
+Parsing CSS source code failed
+  150 |   }
+  151 | }
+> 152 |
+      | ^
+
+Unexpected end of input
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:152:1
+  150 |   }
+  151 | }
+> 152 |
+      | ^
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component] 
+    at handleErrors (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+    at processMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:14014:21)
+    at WebSocket.handleMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13458:52) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_14uevai._.js:13951:21)
+[browser] Uncaught Error: ./portfolio-next/app/globals.css:152:1
+Parsing CSS source code failed
+  150 |   }
+  151 | }
+> 152 |
+      | ^
+
+Unexpected end of input
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:152:1
+  150 |   }
+  151 | }
+> 152 |
+      | ^
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component]
+
+
+    at <unknown> (Error: ./portfolio-next/app/globals.css:152:1)
+    at <unknown> (./portfolio-next/app/globals.css:152:1)
+    at <unknown> (Error: (./portfolio-next/app/globals.css:152:1)
+    at <unknown> (./portfolio-next/app/globals.css:152:1)
+[browser] ./portfolio-next/app/globals.css:152:1
+Parsing CSS source code failed
+  150 |   }
+  151 | }
+> 152 |
+      | ^
+
+Unexpected end of input
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:152:1
+  150 |   }
+  151 | }
+> 152 |
+      | ^
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component] 
+    at handleErrors (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2774:21)
+    at processMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2835:28)
+    at <unknown> (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2680:13)
+    at WebSocket.handleMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2325:17) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2774:21)
+[browser] ./portfolio-next/app/globals.css:152:1
+Parsing CSS source code failed
+  150 |   }
+  151 | }
+> 152 |
+      | ^
+
+Unexpected end of input
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:152:1
+  150 |   }
+  151 | }
+> 152 |
+      | ^
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component] 
+    at handleErrors (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2774:21)
+    at processMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2835:28)
+    at <unknown> (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2680:13)
+    at WebSocket.handleMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2325:17) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2774:21)
+[browser] ./portfolio-next/app/globals.css:152:1
+Parsing CSS source code failed
+  150 |   }
+  151 | }
+> 152 |
+      | ^
+
+Unexpected end of input
+
+Generated code of PostCSS transform of file content of portfolio-next/app/globals.css:
+./portfolio-next/app/globals.css:152:1
+  150 |   }
+  151 | }
+> 152 |
+      | ^
+
+Import trace:
+  Client Component Browser:
+    ./portfolio-next/app/globals.css [Client Component Browser]
+    ./portfolio-next/app/layout.js [Server Component] 
+    at handleErrors (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2774:21)
+    at processMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2835:28)
+    at <unknown> (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2680:13)
+    at WebSocket.handleMessage (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2325:17) (file://C:/Users/Aditya/Desktop/Porfolio redesign/portfolio-next/.next/dev/static/chunks/0n33_next_dist_client_0u5s65_._.js:2774:21)

@@ -169,13 +169,13 @@
 /* Responsiveness overrides */
 @media (max-width: 1024px) {
   .container {
-    position: relative;
-    top: auto;
-    right: auto;
-    left: auto;
-    margin: 40px auto 20px auto;
-    max-width: 100%;
-    transform: none;
+    position: relative !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    margin: 0 auto 30px auto !important;
+    max-width: 95% !important;
+    transform: none !important;
     order: 3;
   }
   

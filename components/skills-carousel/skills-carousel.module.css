@@ -1,0 +1,287 @@
+.skillsSection {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0.2rem;
+  padding-left: 2.2rem;
+}
+
+.sectionHeader h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  font-family: var(--font-hand);
+  line-height: 1.2;
+}
+
+.headerLine {
+  width: 80px;
+  height: 1.5px;
+  background: var(--highlight-color);
+  border-radius: 1px;
+  opacity: 0.85;
+}
+
+.carouselViewport {
+  width: 100%;
+  padding: 2.6rem 0;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+  -webkit-user-drag: none;
+  touch-action: pan-y;
+  perspective: 1200px;
+}
+
+.carouselViewport:active {
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 32px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.carouselCard {
+  flex: 0 0 170px;
+  width: 170px;
+  height: 175px;
+  background: var(--paper-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 var(--border-color);
+  filter: var(--sketch-filter);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 8px 4px 8px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: box-shadow 0.25s;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.carouselCard:hover {
+  box-shadow: 5px 5px 0 var(--border-color);
+}
+
+.cardVisual {
+  width: 100%;
+  height: 110px;
+  border: 1.8px solid var(--border-color);
+  border-radius: 4px;
+  background: rgba(var(--border-rgb), 0.02);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: box-shadow 0.2s ease;
+}
+
+.cardVisual svg {
+  width: 82%;
+  height: 82%;
+  display: block;
+}
+
+/* Global SVG nested classes inside card visuals (specifically for wind-swept shields) */
+:global(.wind-overlay) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+:global(.wind-lines-svg) {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+:global(.wind-line) {
+  stroke-dasharray: 12 36;
+  animation: windSweep 2.2s infinite linear;
+}
+
+:global(.wind-line-1) {
+  animation-delay: 0s;
+}
+
+:global(.wind-line-2) {
+  animation-delay: 0.7s;
+}
+
+:global(.wind-line-3) {
+  animation-delay: 1.4s;
+}
+
+:global(.svg-shield-flying) {
+  width: 82% !important;
+  height: 82% !important;
+  display: block !important;
+  z-index: 3;
+}
+
+@keyframes windSweep {
+  0% {
+    stroke-dashoffset: 48;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.6;
+  }
+  85% {
+    opacity: 0.6;
+  }
+  100% {
+    stroke-dashoffset: -48;
+    opacity: 0;
+  }
+}
+
+.cardInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.cardInfo h3 {
+  font-size: 1.25rem;
+  font-family: var(--font-caveat);
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+  text-align: center;
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .skillsSection {
+    position: relative !important;
+    bottom: auto !important;
+    order: 4 !important;
+    margin-top: 2.5rem !important;
+    margin-bottom: 2rem !important;
+    padding: 0 10px !important;
+    width: 100%;
+  }
+
+  .sectionHeader {
+    padding-left: 5px !important;
+    margin-bottom: 8px !important;
+    align-items: center !important;
+    width: 100%;
+  }
+
+  .sectionHeader h2 {
+    font-size: 1.15rem !important;
+  }
+
+  .carouselViewport {
+    overflow: visible !important;
+    width: 100% !important;
+    padding: 0 !important;
+    touch-action: auto;
+  }
+
+  .carouselTrack {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px 6px !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+  }
+
+  .carouselCard {
+    flex: 0 1 auto !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 6px 10px !important;
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 6px !important;
+    background: var(--paper-bg) !important;
+    border: 1.2px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    box-shadow: 1.5px 1.5px 0 var(--border-color) !important;
+    filter: none !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin-bottom: 0 !important;
+  }
+
+  .carouselCard.cloned {
+    display: none !important;
+  }
+
+  .carouselCard :global(.wind-overlay) {
+    display: none !important;
+  }
+
+  .carouselCard .cardVisual {
+    width: 16px !important;
+    height: 16px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .carouselCard .cardVisual svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+  }
+
+  .carouselCard .cardInfo {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: none !important;
+  }
+
+  .carouselCard .cardInfo h3 {
+    font-size: 11px !important;
+    font-family: var(--font-fira-code) !important;
+    font-weight: bold !important;
+    color: var(--text-color) !important;
+    margin: 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+  }
+}
+
+:global(.theme-charcoal) .cardVisual svg,
+:global(.theme-charcoal) .cardVisual svg [stroke="var(--border-color)"] {
+  stroke: rgba(255, 255, 255, 0.75) !important;
+}

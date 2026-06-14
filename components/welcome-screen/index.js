@@ -11,6 +11,12 @@ export default function WelcomeScreen({ onRevealComplete }) {
   const { playSFX } = useAudio();
   const [isRendered, setIsRendered] = useState(true);
 
+  // Store callbacks in refs to prevent effect re-runs on identity changes
+  const playSFXRef = useRef(playSFX);
+  const onRevealCompleteRef = useRef(onRevealComplete);
+  useEffect(() => { playSFXRef.current = playSFX; }, [playSFX]);
+  useEffect(() => { onRevealCompleteRef.current = onRevealComplete; }, [onRevealComplete]);
+
   useEffect(() => {
     const welcomeScreen = welcomeScreenRef.current;
     const duster = dusterRef.current;
@@ -18,16 +24,6 @@ export default function WelcomeScreen({ onRevealComplete }) {
 
     // Scopes all selector queries within this component tree
     const q = gsap.utils.selector(welcomeScreenRef);
-
-    // Orchestrate the master reveal timeline
-    const masterTimeline = gsap.timeline({
-      onComplete: () => {
-        setIsRendered(false);
-        if (onRevealComplete) {
-          onRevealComplete();
-        }
-      },
-    });
 
     // 1. Handwriting SVG paths draw timeline (Strict Sequential Letter-by-Letter)
     const drawTimeline = gsap.timeline();
@@ -48,10 +44,17 @@ export default function WelcomeScreen({ onRevealComplete }) {
     // Underline markup (brief pause before starting after Y finishes)
     drawTimeline.to(q(".path9"), { strokeDashoffset: 0, duration: 0.85, ease: "power1.inOut" }, "+=0.25");
 
-    masterTimeline.add(drawTimeline, 0.15);
+    // 2. Desk reveal diagonal wipe clipPath & duster motion
+    const revealTimeline = gsap.timeline({
+      paused: true,
+      onComplete: () => {
+        setIsRendered(false);
+        if (onRevealCompleteRef.current) {
+          onRevealCompleteRef.current();
+        }
+      },
+    });
 
-    // 2. Desk reveal diagonal wipe clipPath & duster motion (starts dynamically after writing finishes)
-    const revealTimeline = gsap.timeline();
     revealTimeline.to(welcomeScreen, {
       clipPath: "polygon(140% 140%, 140% 140%, 140% 140%)",
       duration: 1.8,
@@ -60,22 +63,39 @@ export default function WelcomeScreen({ onRevealComplete }) {
 
     if (duster) {
       revealTimeline.to(duster, {
-        left: "140%",
-        top: "140%",
+        x: "140%",
+        y: "140%",
         duration: 1.8,
         ease: "power2.inOut",
         onStart: () => {
-          playSFX("rubberEraser");
+          playSFXRef.current("rubberEraser");
         },
       }, 0);
     }
 
-    masterTimeline.add(revealTimeline, "+=0.25");
+    // Trigger reveal only when drawing completes and window is fully loaded
+    let startRevealRef;
+    drawTimeline.eventCallback("onComplete", () => {
+      const startReveal = () => {
+        revealTimeline.play();
+      };
+      startRevealRef = startReveal;
+
+      if (document.readyState === "complete") {
+        setTimeout(startReveal, 350);
+      } else {
+        window.addEventListener("load", startReveal, { once: true });
+      }
+    });
 
     return () => {
-      masterTimeline.kill();
+      if (startRevealRef) {
+        window.removeEventListener("load", startRevealRef);
+      }
+      drawTimeline.kill();
+      revealTimeline.kill();
     };
-  }, [playSFX, onRevealComplete]);
+  }, []); // Stable effect — callbacks read from refs
 
   if (!isRendered) return null;
 

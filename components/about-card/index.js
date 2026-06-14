@@ -18,6 +18,11 @@ export default function AboutCard() {
         ease: "power2.out",
       });
     }
+    return () => {
+      if (textRef.current) {
+        gsap.killTweensOf(textRef.current);
+      }
+    };
   }, []);
 
   return (

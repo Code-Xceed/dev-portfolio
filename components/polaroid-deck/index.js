@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import gsap from "gsap";
 import { useAudio } from "../../context/audio-context";
 import styles from "./polaroid-deck.module.css";
@@ -10,9 +10,11 @@ export default function PolaroidDeck() {
   const [depths, setDepths] = useState([0, 1, 2]); // depths[0]: Card 1, depths[1]: Card 2, depths[2]: Card 3
   const [isDragging, setIsDragging] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [draggingActive, setDraggingActive] = useState(false);
   
   const activeIndexRef = useRef(0);
-  const cardRefs = [useRef(null), useRef(null), useRef(null)];
+  const cardRefsStore = useRef([React.createRef(), React.createRef(), React.createRef()]);
+  const cardRefs = cardRefsStore.current;
 
   // State refs for dragging coords
   const isDraggingRef = useRef(false);
@@ -33,7 +35,7 @@ export default function PolaroidDeck() {
     });
   }, [depths]);
 
-  const startDrag = (clientX, clientY) => {
+  const startDrag = useCallback((clientX, clientY) => {
     if (isAnimating) return;
     isDraggingRef.current = true;
     setIsDragging(true);
@@ -49,9 +51,11 @@ export default function PolaroidDeck() {
     if (activeCard) {
       activeCard.style.cursor = "grabbing";
     }
-  };
 
-  const handleDrag = (clientX, clientY) => {
+    setDraggingActive(true);
+  }, [isAnimating, playSFX]);
+
+  const handleDrag = useCallback((clientX, clientY) => {
     if (!isDraggingRef.current) return;
 
     const currentX = clientX - dragStartRef.current.x;
@@ -74,12 +78,13 @@ export default function PolaroidDeck() {
         rotation: angle,
       });
     }
-  };
+  }, [baseAngle]);
 
-  const endDrag = () => {
+  const endDrag = useCallback(() => {
     if (!isDraggingRef.current) return;
     isDraggingRef.current = false;
     setIsDragging(false);
+    setDraggingActive(false);
 
     const activeCard = cardRefs[activeIndexRef.current].current;
     if (!activeCard) return;
@@ -185,10 +190,12 @@ export default function PolaroidDeck() {
         },
       });
     }
-  };
+  }, [depths, isAnimating, baseAngle, playSFX]);
 
   // Attach global event listeners
   useEffect(() => {
+    if (!draggingActive) return;
+
     const handleMouseMove = (e) => {
       handleDrag(e.clientX, e.clientY);
     };
@@ -217,7 +224,7 @@ export default function PolaroidDeck() {
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [depths, isAnimating]);
+  }, [draggingActive, depths, isAnimating]);
 
   const onMouseDown = (e) => {
     if (e.button !== 0) return;

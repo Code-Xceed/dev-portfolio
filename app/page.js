@@ -1,82 +1,74 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import WelcomeScreen from "../components/welcome-screen";
 import HorizontalScroll from "../components/horizontal-scroll";
 import DrawingSheet from "../components/drawing-sheet";
 import AdityaText from "../components/aditya-text";
 import PolaroidDeck from "../components/polaroid-deck";
 import AboutCard from "../components/about-card";
+import SkillsCarousel from "../components/skills-carousel";
+import BentoDock from "../components/bento-dock";
+import PaperEmojiKeychain from "../components/paper-emoji-keychain";
+import PaperPlaneEngine from "../components/paper-plane-engine";
+
+import ProjectsSection from "../components/projects-section";
+import ContactSection from "../components/contact-section";
 
 export default function Home() {
   const [revealed, setRevealed] = useState(false);
+  const [activePage, setActivePage] = useState(0);
+  const handleRevealComplete = useCallback(() => setRevealed(true), []);
 
   return (
     <>
-      <WelcomeScreen onRevealComplete={() => setRevealed(true)} />
-      
+      <WelcomeScreen onRevealComplete={handleRevealComplete} />
+
       <div
         style={{
           transition: "opacity 0.8s ease",
           pointerEvents: revealed ? "auto" : "none",
         }}
       >
-        <HorizontalScroll pagesCount={3}>
-          {/* Screen 1: Home / Hero */}
-          <div className="horizontal-page-panel">
-            <DrawingSheet id="drawing-sheet-1">
+        <DrawingSheet id="drawing-sheet" ornaments={<PaperEmojiKeychain />}>
+          <HorizontalScroll pagesCount={3} activePage={activePage} onPageChange={setActivePage}>
+            {/* Screen 1: Home / Hero */}
+            <div className="horizontal-page-panel">
               <div
                 style={{
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  justifyContent: "center",
+                  justifyContent: "flex-start",
+                  position: "relative",
+                  paddingTop: "20px"
                 }}
               >
                 <AdityaText />
                 <PolaroidDeck />
                 <AboutCard />
-                {/* Empty canvas ready for Home content */}
               </div>
-            </DrawingSheet>
-          </div>
+            </div>
 
-          {/* Screen 2: Skills / Experience */}
-          <div className="horizontal-page-panel">
-            <DrawingSheet id="drawing-sheet-2">
-              <div
-                style={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {/* Empty canvas ready for Skills content */}
+            {/* Screen 2: Projects */}
+            <div className="horizontal-page-panel">
+              <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <SkillsCarousel revealed={revealed} activePage={activePage} />
+                <ProjectsSection revealed={revealed} activePage={activePage} />
               </div>
-            </DrawingSheet>
-          </div>
+            </div>
 
-          {/* Screen 3: Projects / Contact */}
-          <div className="horizontal-page-panel">
-            <DrawingSheet id="drawing-sheet-3">
-              <div
-                style={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {/* Empty canvas ready for Projects content */}
-              </div>
-            </DrawingSheet>
-          </div>
-        </HorizontalScroll>
+            {/* Screen 3: Contact */}
+            <div className="horizontal-page-panel">
+              <ContactSection />
+            </div>
+          </HorizontalScroll>
+        </DrawingSheet>
       </div>
+
+      <BentoDock activePage={activePage} onPageChange={setActivePage} />
+      <PaperPlaneEngine />
     </>
   );
 }

@@ -1,0 +1,199 @@
+/* Theme Toggle Widget — hand-drawn sun/moon sketch stamp
+   --------------------------------------------------------------
+   Visually identical button footprint to the other dock widget
+   (42px round, paper bg, 2px wobbly border, drop shadow), but the
+   interior is a custom sun/moon SVG that morphs between states. */
+
+.widgetButton {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--paper-bg);
+  border: 2px solid var(--border-color);
+  box-shadow: 2px 2px 0 var(--border-color);
+  padding: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Snappy spring on press, slightly slower on hover so the wobble
+     has room to read. */
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+  will-change: transform;
+  flex-shrink: 0;
+  /* Inherit the existing sketch-vibration filter from the dock so
+     the button border stays wobbly. */
+  filter: var(--sketch-filter);
+}
+
+.widgetButton:hover {
+  transform: scale(1.08) rotate(-4deg);
+  box-shadow: 3px 3px 0 var(--border-color);
+  background-color: var(--highlight-color);
+}
+
+.widgetButton:active {
+  transform: scale(0.94) rotate(2deg);
+  box-shadow: 1px 1px 0 var(--border-color);
+}
+
+/* While the expanding-circle transition is running we lock the
+   button down so the user can't queue a second toggle. */
+.widgetButton.locked {
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.charcoal:hover {
+  background-color: var(--highlight-color);
+  border-color: var(--highlight-color);
+}
+
+.widgetInner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pressed {
+  transform: scale(0.88);
+}
+
+.iconWrapper {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+}
+
+.widgetSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center;
+}
+
+.widgetSvg.hovered {
+  transform: rotate(20deg) scale(1.05);
+}
+
+/* ---- State groups: muted (hidden) vs shining (visible) ---- */
+.shining {
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: center;
+  transition:
+    opacity 0.2s ease,
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.muted {
+  opacity: 0;
+  transform: scale(0.55);
+  transform-origin: center;
+  /* Slightly faster exit so the icon doesn't lag the theme change. */
+  transition:
+    opacity 0.1s ease,
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+/* Subtle "twinkle" loop on the dark-mode stars. */
+.stars.shining path {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: starTwinkle 2.6s ease-in-out infinite;
+}
+.stars.shining path:nth-child(2) {
+  animation-delay: 0.9s;
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.85); }
+  50%      { opacity: 1;   transform: scale(1.15); }
+}
+
+/* Subtle pulse on the sun rays so the icon feels alive in light mode. */
+.rays.shining path {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: rayPulse 3.2s ease-in-out infinite;
+}
+.rays.shining path:nth-child(1) { animation-delay: 0s; }
+.rays.shining path:nth-child(2) { animation-delay: 0.2s; }
+.rays.shining path:nth-child(3) { animation-delay: 0.4s; }
+.rays.shining path:nth-child(4) { animation-delay: 0.6s; }
+.rays.shining path:nth-child(5) { animation-delay: 0.8s; }
+.rays.shining path:nth-child(6) { animation-delay: 1.0s; }
+.rays.shining path:nth-child(7) { animation-delay: 1.2s; }
+.rays.shining path:nth-child(8) { animation-delay: 1.4s; }
+
+@keyframes rayPulse {
+  0%, 100% { opacity: 0.65; transform: scale(0.92); }
+  50%      { opacity: 1;    transform: scale(1.08); }
+}
+
+/* ---- Status indicator dot ---- */
+.statusDot {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.statusDot.light {
+  background-color: #FBBF24; /* warm sunlight yellow */
+  box-shadow: 0 0 6px rgba(251, 191, 36, 0.55);
+}
+
+.statusDot.dark {
+  background-color: #8B5CF6; /* cool moonlight violet */
+  box-shadow: 0 0 6px rgba(139, 92, 246, 0.55);
+}
+
+.charcoal .statusDot {
+  border-color: var(--text-color);
+}
+
+/* ---- Hover stroke recolor (works for both themes) ---- */
+.widgetButton:hover .widgetSvg {
+  color: var(--paper-bg);
+}
+.charcoal:hover .widgetSvg {
+  color: var(--paper-bg);
+}
+
+/* ---- Mobile responsive ---- */
+@media (max-width: 768px) {
+  .widgetButton {
+    width: 38px;
+    height: 38px;
+  }
+
+  .iconWrapper {
+    width: 24px;
+    height: 24px;
+  }
+
+  .statusDot {
+    width: 7px;
+    height: 7px;
+    bottom: 2px;
+    right: 2px;
+    border-width: 1px;
+  }
+}

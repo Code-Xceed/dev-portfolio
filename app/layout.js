@@ -2,6 +2,8 @@ import { Fira_Code, Outfit, Caveat, Dancing_Script } from "next/font/google";
 import { ThemeProvider } from "../context/theme-context";
 import { AudioProvider } from "../context/audio-context";
 import TerrainBackground from "../components/terrain-background";
+import ThemeRulerOverlay from "../components/theme-ruler-overlay";
+import CustomCursor from "../components/custom-cursor";
 import "./globals.css";
 
 const firaCode = Fira_Code({
@@ -39,7 +41,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${firaCode.variable} ${outfit.variable} ${caveat.variable} ${dancingScript.variable}`}>
-      <body className="theme-grid">
+      <body className="theme-grid" suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -55,6 +57,12 @@ export default function RootLayout({ children }) {
           <AudioProvider>
             <TerrainBackground />
             {children}
+            {/* Renders nothing until a theme transition is requested,
+                then mounts the diagonal drafting ruler overlay that
+                sweeps top-left → bottom-right while the View
+                Transitions API reveals the new theme along the same
+                diagonal. */}
+            <ThemeRulerOverlay />
           </AudioProvider>
         </ThemeProvider>
         

@@ -4,11 +4,6 @@
 
 @import "../styles/tokens.css";
 
-/* Theme: Crumpled Charcoal Cursor Override */
-.theme-charcoal {
-  cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFMkVCRjAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNMyAzIEwyMSA5IEwxMyAxMyBMOSAyMSBaIiBmaWxsPSIjMTExNTIwIi8+PGxpbmUgeDE9IjMiIHkxPSIzIiB4Mj0iMTMiIHkyPSIzIi8+PC9zdmc+") 3 3, auto !important;
-}
-
 /* BASE RESETS */
 * {
   box-sizing: border-box;
@@ -19,7 +14,7 @@
 html,
 body {
   width: 100%;
-  min-height: 100dvh;
+  height: 100dvh; /* Strict height to match dynamic viewport */
   background-color: transparent;
   color: var(--text-color);
   font-family: var(--font-outfit);
@@ -27,42 +22,106 @@ body {
   position: relative;
 }
 
-/* Custom hand-drawn cursors scoped to desktop devices with pointer support */
-@media (hover: hover) and (pointer: fine) {
-  html,
-  body {
-    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMzQzJBMjEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBdPSJNMyAzIEwyMSA5IEwxMyAxMyBMOSAyMSBaIiBmaWxsPSIjRkNGQkUzIi8+PGxpbmUgeDE9IjMiIHkxPSIzIiB4Mj0iMTMiIHkyPSIxMyIvPjwvc3ZnPg==") 3 3, auto !important;
-  }
+/* ==========================================================================
+   REFINED CUSTOM CURSOR SYSTEM
+   ========================================================================== */
 
-  .theme-charcoal {
-    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFMkVCRjAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNMyAzIEwyMSA5IEwxMyAxMyBMOSAyMSBaIiBmaWxsPSIjMTExNTIwIi8+PGxpbmUgeDE9IjMiIHkxPSIzIiB4Mj0iMTMiIHkyPSIzIi8+PC9zdmc+") 3 3, auto !important;
-  }
+/* 1. ABSOLUTE DEFAULT CURSOR (Light Theme)
+   Forcefully applies to everything to ensure 0 windows cursors ever appear */
+*, *::before, *::after {
+  cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMzQzJBMjEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNMyAzIEwyMSA5IEwxMyAxMyBMOSAyMSBaIiBmaWxsPSIjRkNGQkUzIi8+PGxpbmUgeDE9IjMiIHkxPSIzIiB4Mj0iMTMiIHkyPSIxMyIvPjwvc3ZnPg==") 2 2, auto !important;
+}
 
-  a,
-  button,
-  [role="button"],
-  .audio-widget,
-  .bento-dock-item,
-  .polaroid-card,
-  .coffee-ring-stain,
-  .widget,
-  svg g[class^="letter-"],
-  #dock-btn-clean {
-    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2IiBmaWxsPSJub25lIiBzdHJva2U9IiMzQzJBMjEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCB0cmFuc2Zvcm09InJvdGF0ZSgtMTUgMTggMTgpIiBkPSJNMjguNjksMTQuMzN2NC44M2wtMi0uNDNWMTMuMjRhMTYuMTksMTYuMTksMCwwLDAtMi4zMy0uODR2NS44MmwtMi0uNDNWMTJjLTEuMS0uMTgtMi4xOC0uMy0zLjA4LS4zNnY1LjUxbC0yLS40M1YxMS40OGgwVjQuMzRhMi41MywyLjUzLDAsMCwwLTIuNi0yLjQzLDIuNTMsMi41MywwLDAsMC0yLjYsMi40M1YxNy4yN2gwdjIuNTlsLTIsMVYxNS42TDcuNzUsMTMuMjFhMi44MywyLjgzLDAsMCwwLTQsMCwyLjkzLDIuOTMsMCwwLDAsMCw0LjA5bDYsNy4xYTEwLjgyLDEwLjgyLDAsMCwwLDEuMzksNC4yMiw4LjQyLDguNDIsMCwwLDAsMi4yMSwyLjczdjIuNTZIMjcuNzlWMzAuNjJhMTIuNTQsMTIuNTQsMCwwLDAsMy04LjV2LTZBMTAsMTAsMCwwLDAsMjguNjksMTQuMzNaIiBmaWxsPSIjRkNGQkUzIi8+PC9zdmc+") 7 2, pointer !important;
-  }
+/* Default Cursor (Dark Theme) */
+.theme-charcoal *, .theme-charcoal *::before, .theme-charcoal *::after {
+  cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGNUY1RUQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNMyAzIEwyMSA5IEwxMyAxMyBMOSAyMSBaIiBmaWxsPSIjMkIyQjI5Ii8+PGxpbmUgeDE9IjMiIHkxPSIzIiB4Mj0iMTMiIHkyPSIxMyIvPjwvc3ZnPg==") 2 2, auto !important;
+}
 
-  .theme-charcoal a,
-  .theme-charcoal button,
-  .theme-charcoal [role="button"],
-  .theme-charcoal .audio-widget,
-  .theme-charcoal .bento-dock-item,
-  .theme-charcoal .polaroid-card,
-  .theme-charcoal .coffee-ring-stain,
-  .theme-charcoal .widget,
-  .theme-charcoal svg g[class^="letter-"],
-  .theme-charcoal #dock-btn-clean {
-    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2IiBmaWxsPSJub25lIiBzdHJva2U9IiNGNUY1RUQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCB0cmFuc2Zvcm09InJvdGF0ZSgtMTUgMTggMTgpIiBkPSJNMjguNjksMTQuMzN2NC44M2wtMi0uNDNWMTMuMjRhMTYuMTksMTYuMTksMCwwLDAtMi4zMy0uODR2NS44MmwtMi0uNDNWMTJjLTEuMS0uMTgtMi4xOC0uMy0zLjA4LS4zNnY1LjUxbC0yLS40M1YxMS40OGgwVjQuMzRhMi41MywyLjUzLDAsMCwwLTIuNi0yLjQzLDIuNTMsMi41MywwLDAsMC0yLjYsMi40M1YxNy4yN2gwdjIuNTlsLTIsMVYxNS42TDcuNzUsMTMuMjFhMi44MywyLjgzLDAsMCwwLTQsMCwyLjkzLDIuOTMsMCwwLDAsMCw0LjA5bDYsNy4xYTEwLjgyLDEwLjgyLDAsMCwwLDEuMzksNC4yMiw4LjQyLDguNDIsMCwwLDAsMi4yMSwyLjczdjIuNTZIMjcuNzlWMzAuNjJhMTIuNTQsMTIuNTQsMCwwLDAsMy04LjV2LTZBMTAsMTAsMCwwLDAsMjguNjksMTQuMzNaIiBmaWxsPSIjMkIyQjI5Ii8+PC9zdmc+") 7 2, pointer !important;
-  }
+/* 2. REFINED POINTER CURSOR (Light Theme)
+   Applies to interactive elements AND their children */
+a, a *,
+button, button *,
+[role="button"], [role="button"] *,
+input[type="button"], input[type="button"] *,
+input[type="submit"], input[type="submit"] *,
+input[type="reset"], input[type="reset"] *,
+input[type="checkbox"], input[type="radio"],
+select, select *,
+summary, summary *,
+label[for], label[for] *,
+[class*="dockItem"], [class*="dockItem"] *,
+[class*="widget"], [class*="widget"] *,
+[class*="polaroidCard"], [class*="polaroidCard"] *,
+[class*="polaroid-card"], [class*="polaroid-card"] *,
+[class*="carouselCard"], [class*="carouselCard"] *,
+[class*="skillCard"], [class*="skillCard"] *,
+[class*="aboutCard"], [class*="aboutCard"] *,
+[class*="projectSpiral"], [class*="projectSpiral"] *,
+[class*="projectsSpiral"], [class*="projectsSpiral"] *,
+[class*="closeBtn"], [class*="closeBtn"] *,
+[class*="letter"], [class*="letter"] *,
+[class*="lastName"], [class*="lastName"] *,
+[tabindex]:not([tabindex="-1"]), [tabindex]:not([tabindex="-1"]) *,
+body.hovering-plane * {
+  cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDM2IDM2IiBmaWxsPSJub25lIiBzdHJva2U9IiMzQzJBMjEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCB0cmFuc2Zvcm09InJvdGF0ZSgtMTUgMTggMTgpIiBkPSJNMjguNjksMTQuMzN2NC44M2wtMi0uNDNWMTMuMjRhMTYuMTksMTYuMTksMCwwLDAtMi4zMy0uODR2NS44MmwtMi0uNDNWMTJjLTEuMS0uMTgtMi4xOC0uMy0zLjA4LS4zNnY1LjUxbC0yLS40M1YxMS40OGgwVjQuMzRhMi41MywyLjUzLDAsMCwwLTIuNi0yLjQzLDIuNTMsMi41MywwLDAsMC0yLjYsMi40M1YxNy4yN2gwdjIuNTlsLTIsMVYxNS42TDcuNzUsMTMuMjFhMi44MywyLjgzLDAsMCwwLTQsMCwyLjkzLDIuOTMsMCwwLDAsMCw0LjA5bDYsNy4xYTEwLjgyLDEwLjgyLDAsMCwwLDEuMzksNC4yMiw4LjQyLDguNDIsMCwwLDAsMi4yMSwyLjczdjIuNTZIMjcuNzlWMzAuNjJhMTIuNTQsMTIuNTQsMCwwLDAsMy04LjV2LTZBMTAsMTAsMCwwLDAsMjguNjksMTQuMzNaIiBmaWxsPSIjRkNGQkUzIi8+PC9zdmc+") 7 2, pointer !important;
+}
+
+/* Pointer Cursor (Dark Theme) */
+.theme-charcoal a, .theme-charcoal a *,
+.theme-charcoal button, .theme-charcoal button *,
+.theme-charcoal [role="button"], .theme-charcoal [role="button"] *,
+.theme-charcoal input[type="button"], .theme-charcoal input[type="button"] *,
+.theme-charcoal input[type="submit"], .theme-charcoal input[type="submit"] *,
+.theme-charcoal input[type="reset"], .theme-charcoal input[type="reset"] *,
+.theme-charcoal input[type="checkbox"], .theme-charcoal input[type="radio"],
+.theme-charcoal select, .theme-charcoal select *,
+.theme-charcoal summary, .theme-charcoal summary *,
+.theme-charcoal label[for], .theme-charcoal label[for] *,
+.theme-charcoal [class*="dockItem"], .theme-charcoal [class*="dockItem"] *,
+.theme-charcoal [class*="widget"], .theme-charcoal [class*="widget"] *,
+.theme-charcoal [class*="polaroidCard"], .theme-charcoal [class*="polaroidCard"] *,
+.theme-charcoal [class*="polaroid-card"], .theme-charcoal [class*="polaroid-card"] *,
+.theme-charcoal [class*="carouselCard"], .theme-charcoal [class*="carouselCard"] *,
+.theme-charcoal [class*="skillCard"], .theme-charcoal [class*="skillCard"] *,
+.theme-charcoal [class*="aboutCard"], .theme-charcoal [class*="aboutCard"] *,
+.theme-charcoal [class*="projectSpiral"], .theme-charcoal [class*="projectSpiral"] *,
+.theme-charcoal [class*="projectsSpiral"], .theme-charcoal [class*="projectsSpiral"] *,
+.theme-charcoal [class*="closeBtn"], .theme-charcoal [class*="closeBtn"] *,
+.theme-charcoal [class*="letter"], .theme-charcoal [class*="letter"] *,
+.theme-charcoal [class*="lastName"], .theme-charcoal [class*="lastName"] *,
+.theme-charcoal [tabindex]:not([tabindex="-1"]), .theme-charcoal [tabindex]:not([tabindex="-1"]) *,
+.theme-charcoal.hovering-plane * {
+  cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDM2IDM2IiBmaWxsPSJub25lIiBzdHJva2U9IiNGNUY1RUQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCB0cmFuc2Zvcm09InJvdGF0ZSgtMTUgMTggMTgpIiBkPSJNMjguNjksMTQuMzN2NC44M2wtMi0uNDNWMTMuMjRhMTYuMTksMTYuMTksMCwwLDAtMi4zMy0uODR2NS44MmwtMi0uNDNWMTJjLTEuMS0uMTgtMi4xOC0uMy0zLjA4LS4zNnY1LjUxbC0yLS40M1YxMS40OGgwVjQuMzRhMi41MywyLjUzLDAsMCwwLTIuNi0yLjQzLDIuNTMsMi41MywwLDAsMC0yLjYsMi40M1YxNy4yN2gwdjIuNTlsLTIsMVYxNS42TDcuNzUsMTMuMjFhMi44MywyLjgzLDAsMCwwLTQsMCwyLjkzLDIuOTMsMCwwLDAsMCw0LjA5bDYsNy4xYTEwLjgyLDEwLjgyLDAsMCwwLDEuMzksNC4yMiw4LjQyLDguNDIsMCwwLDAsMi4yMSwyLjczdjIuNTZIMjcuNzlWMzAuNjJhMTIuNTQsMTIuNTQsMCwwLDAsMy04LjV2LTZBMTAsMTAsMCwwLDAsMjguNjksMTQuMzNaIiBmaWxsPSIjMkIyQjI5Ii8+PC9zdmc+") 7 2, pointer !important;
+}
+
+/* 3. REFINED ACTIVE STATE (Tactile Click)
+   Visually scales down the pointer to simulate pressing down on paper */
+a:active, a:active *,
+button:active, button:active *,
+[role="button"]:active, [role="button"]:active *,
+[class*="dockItem"]:active, [class*="dockItem"]:active *,
+[class*="widget"]:active, [class*="widget"]:active *,
+[class*="polaroidCard"]:active, [class*="polaroidCard"]:active *,
+[class*="carouselCard"]:active, [class*="carouselCard"]:active *,
+[class*="skillCard"]:active, [class*="skillCard"]:active *,
+[class*="closeBtn"]:active, [class*="closeBtn"]:active *,
+[class*="letter"]:active, [class*="letter"]:active *,
+[class*="lastName"]:active, [class*="lastName"]:active * {
+  cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDM2IDM2IiBmaWxsPSJub25lIiBzdHJva2U9IiMzQzJBMjEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCB0cmFuc2Zvcm09InJvdGF0ZSgtMTUgMTggMTgpIHNjYWxlKDAuOSkgdHJhbnNsYXRlKDIgMikiIGQ9Ik0yOC42OSwxNC4zM3Y0LjgzbC0yLS40M1YxMy4yNGExNi4xOSwxNi4xOSwwLDAsMC0yLjMzLS44NHY1LjgybC0yLS40M1YxMmMtMS4xLS4xOC0yLjE4LS4zLTMuMDgtLjM2djUuNTFsLTItLjQzVjExLjQ4aDBWNC4zNGEyLjUzLDIuNTMsMCwwLDAtMi42LTIuNDMsMi41MywyLjUzLDAsMCwwLTIuNiwyLjQzVjE3LjI3aDB2Mi41OWwtMiwxVjE1LjZMNy43NSwxMy4yMWEyLjgzLDIuODMsMCwwLDAtNCwwLDIuOTMsMi45MywwLDAsMCwwLDQuMDlsNiw3LjFhMTAuODIsMTAuODIsMCwwLDAsMS4zOSw0LjIyLDguNDIsOC40MiwwLDAsMCwyLjIxLDIuNzN2Mi41NkgyNy43OVYzMC42MmExMi41NCwxMi41NCwwLDAsMCwzLTguNXYtNkExMCwxMCwwLDAsMCwyOC42OSwxNC4zM1oiIGZpbGw9IiNGQ0ZCRTMiLz48L3N2Zz4=") 7 2, pointer !important;
+}
+
+.theme-charcoal a:active, .theme-charcoal a:active *,
+.theme-charcoal button:active, .theme-charcoal button:active *,
+.theme-charcoal [role="button"]:active, .theme-charcoal [role="button"]:active *,
+.theme-charcoal [class*="dockItem"]:active, .theme-charcoal [class*="dockItem"]:active *,
+.theme-charcoal [class*="widget"]:active, .theme-charcoal [class*="widget"]:active *,
+.theme-charcoal [class*="polaroidCard"]:active, .theme-charcoal [class*="polaroidCard"]:active *,
+.theme-charcoal [class*="carouselCard"]:active, .theme-charcoal [class*="carouselCard"]:active *,
+.theme-charcoal [class*="skillCard"]:active, .theme-charcoal [class*="skillCard"]:active *,
+.theme-charcoal [class*="closeBtn"]:active, .theme-charcoal [class*="closeBtn"]:active *,
+.theme-charcoal [class*="letter"]:active, .theme-charcoal [class*="letter"]:active *,
+.theme-charcoal [class*="lastName"]:active, .theme-charcoal [class*="lastName"]:active * {
+  cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDM2IDM2IiBmaWxsPSJub25lIiBzdHJva2U9IiNGNUY1RUQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCB0cmFuc2Zvcm09InJvdGF0ZSgtMTUgMTggMTgpIHNjYWxlKDAuOSkgdHJhbnNsYXRlKDIgMikiIGQ9Ik0yOC42OSwxNC4zM3Y0LjgzbC0yLS40M1YxMy4yNGExNi4xOSwxNi4xOSwwLDAsMC0yLjMzLS44NHY1LjgybC0yLS40M1YxMmMtMS4xLS4xOC0yLjE4LS4zLTMuMDgtLjM2djUuNTFsLTItLjQzVjExLjQ4aDBWNC4zNGEyLjUzLDIuNTMsMCwwLDAtMi42LTIuNDMsMi41MywyLjUzLDAsMCwwLTIuNiwyLjQzVjE3LjI3aDB2Mi41OWwtMiwxVjE1LjZMNy43NSwxMy4yMWEyLjgzLDIuODMsMCwwLDAtNCwwLDIuOTMsMi45MywwLDAsMCwwLDQuMDlsNiw3LjFhMTAuODIsMTAuODIsMCwwLDAsMS4zOSw0LjIyLDguNDIsOC40MiwwLDAsMCwyLjIxLDIuNzN2Mi41NkgyNy43OVYzMC42MmExMi41NCwxMi41NCwwLDAsMCwzLTguNXYtNkExMCwxMCwwLDAsMCwyOC42OSwxNC4zM1oiIGZpbGw9IiMyQjJCMjkiLz48L3N2Zz4=") 7 2, pointer !important;
 }
 
 /* Tactile paper texture overlays */
@@ -73,7 +132,7 @@ body {
   width: 100vw;
   height: 100dvh;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 9998;
   opacity: 0.045;
 }
 
@@ -82,38 +141,63 @@ body {
 }
 
 .noise-layer {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  /* Static repeating noise texture — replaces CPU-expensive SVG feTurbulence */
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABHNCSVQICAgIfAhkiAAAAfxJREFUaIHtmTuOg0AQRKsn4SAcgStwH67B/Y/AEThIeqYmMGv8WXZZ5JFGKzR0dxXD2OOcEVERkaWU2r14/24MDhGBqqqoqoqKCCIiUMoWq8k554iI6LLfEQCAzv6TiBCGIQAAIiIQEQGKoiw7vxI8ICIAe/sNPnmMDf4tAOD/gu/6AXF7vVBR8cZ0OhNqAGy2h13WsaYbgkMpyLKsMy1bk3PORfv0tJIcHqPRqJRl6UUGAJAkqegAvRuNRqXjOI7D0VBERFzX5UVRlIpz1wKA6XQmpRS9Wq0IETkajoYCAEBEhGVZlmFZFl1UR+PxWLMs2/Y8DxFR8jwvdC5YjEYjQkTqBoPhBAAIwzDu/U5E+kREBFVVNWq1mgUAYLVaURAE+HdCt9utJkkaCSHEvb29ueVyiWma/h3EeDweC4IAb25u7GazGeo+mUwwTZMcV3drMBgYlm33TdN8cF3X2u121CRJ8D/f30EKIURjvV5bhmH0MQxj5HneNAgCms1mmCQJ9pfL5cq27T6EEHVPGIZJNxDnPsqy7FMul4soilBN07y5XE6aJqloeZZH3e/3lGVZD+/v78V+vyeHwyEHAOTmI/wXpGmaR7PZLJlMpnF+fiEMw7osy9KiKI5FURRERHQ+n/Nut0MHAEBZlr7nefXBcIjn8znf7XZ1d8x/AHuCkEEQPNRoAAAAAElFTkSuQmCC");
+  background-repeat: repeat;
+  background-size: 50px 50px;
 }
 
 .folds-layer {
   background: url(#paper-crumple-pattern);
 }
 
-/* Custom technical scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+
+
+
+
+/* ==========================================================================
+   THEME TRANSITION — Diagonal reveal via the View Transitions API
+   ==========================================================================
+   When startThemeRulerTransition() is called, the browser takes a
+   snapshot of the current theme and a snapshot of the new theme,
+   then animates between them. We customize the animation of the
+   "new" snapshot with a growing triangle clip-path that starts at
+   the top-left corner and expands along the 45° diagonal — exactly
+   the same path the wooden ruler takes. The result: the new theme
+   "wipes" in along the ruler's edge. */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--paper-bg);
-  border-left: 1.5px solid var(--border-color);
+::view-transition-new(root) {
+  /* Soft custom easing that matches the ruler's sweep. */
+  animation: 1000ms cubic-bezier(0.4, 0, 0.2, 1) both diagonalReveal;
+  will-change: clip-path;
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border: 1.5px solid var(--paper-bg);
-  box-shadow: 1.5px 1.5px 0 var(--border-color);
-}
-
-/* Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 1ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 1ms !important;
+@keyframes diagonalReveal {
+  0% {
+    /* Tiny triangle in the top-left corner. */
+    clip-path: polygon(-100% -100%, 0% -100%, -100% 0%);
+  }
+  100% {
+    /* Huge triangle covering everything below/right of the diagonal
+       from top-left to bottom-right. The hypotenuse is the diagonal
+       the ruler travels along. */
+    clip-path: polygon(-100% -100%, 400% -100%, -100% 400%);
   }
 }
+
+/* Disable user-selection while dragging the spiral */
+body.is-dragging-spiral,
+body.is-dragging-spiral * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+

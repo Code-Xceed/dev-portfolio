@@ -12,7 +12,6 @@
   align-items: center;
   justify-content: center;
   clip-path: polygon(140% 140%, 140% -180%, -180% 140%);
-  will-change: clip-path;
 }
 
 .gridBg {
@@ -103,7 +102,7 @@
   stroke-width: 6.5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  will-change: stroke-dashoffset;
+
 }
 
 .heyDot {
@@ -140,7 +139,7 @@
   transform: translate(-50%, -50%) rotate(-45deg);
   pointer-events: none;
   filter: drop-shadow(4px 12px 16px var(--duster-shadow));
-  will-change: left, top;
+
 }
 
 .dusterWood {

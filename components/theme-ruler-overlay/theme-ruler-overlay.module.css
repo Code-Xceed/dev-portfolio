@@ -1,0 +1,224 @@
+/* Diagonal Drafting Ruler — Theme Transition Overlay
+   --------------------------------------------------------------
+   A skeuomorphic wooden ruler that sweeps from the top-left to
+   the bottom-right of the viewport, exactly along the 45°
+   diagonal. The new theme is "revealed" by a separate CSS
+   clip-path animation on ::view-transition-new(root) — this
+   ruler is the decorative visual that coincides with that reveal.
+
+   Token scale: ruler width scales with viewport so the diagonal
+   reads correctly on every device (a thin sliver on phones, a
+   substantial bar on desktop). vmax-based translate distances
+   ensure the start/end positions always clear the viewport. */
+
+/* ---------- Overlay container ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  /* Above the dock (9999) and popup backdrop (99999), below the
+     welcome screen (100000) so first paint isn't blocked. */
+  z-index: 100050;
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+}
+
+/* ---------- Ruler stick ----------
+   42px on desktop; on small screens we shrink it so the sweep
+   doesn't feel chunky on a phone. The height is 250vmax so the
+   stick always extends beyond the viewport in both directions
+   along the diagonal. */
+.stick {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(28px, 5vw, 42px);
+  height: 160vmax;
+  transform: translate3d(-90vmax, -90vmax, 0) rotate(-45deg);
+  transform-origin: center center;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  /* Skeuomorphic wood-grain gradient — warm caramel sketch ruler. */
+  background: linear-gradient(
+    90deg,
+    #d4a373 0%,
+    #e9c46a 30%,
+    #c18c5d 65%,
+    #a47148 85%,
+    #d4a373 100%
+  );
+  border-left: 2px solid #5c4a3f;
+  border-right: 2px solid #5c4a3f;
+
+  /* Warm orange glow for the wood ruler. */
+  box-shadow:
+    0 0 18px rgba(0, 0, 0, 0.35),
+    0 0 36px rgba(218, 92, 53, 0.55);
+
+  /* The whole point of this component — the diagonal sweep. */
+  animation: stickSweep var(--ruler-duration, 1000ms) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* When the dark theme is active, swap the ruler to graphite. */
+:global(.theme-charcoal) .stick {
+  background: linear-gradient(
+    90deg,
+    #181d26 0%,
+    #2e3846 30%,
+    #1e2530 65%,
+    #0f131a 85%,
+    #181d26 100%
+  );
+  border-left-color: #2a3245;
+  border-right-color: #2a3245;
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.55),
+    0 0 42px rgba(56, 189, 248, 0.5);
+}
+
+/* ---------- Tick marks (right edge — the "leading" edge) ---------- */
+.stick::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  width: 6px;
+  background-image: repeating-linear-gradient(
+    0deg,
+    #5c4a3f 0,
+    #5c4a3f 2px,
+    transparent 2px,
+    transparent 12px
+  );
+  opacity: 0.7;
+}
+
+:global(.theme-charcoal) .stick::before {
+  background-image: repeating-linear-gradient(
+    0deg,
+    #38bdf8 0,
+    #38bdf8 2px,
+    transparent 2px,
+    transparent 12px
+  );
+}
+
+/* ---------- Finer tick marks (left edge) ---------- */
+.stick::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5px;
+  width: 10px;
+  background-image: repeating-linear-gradient(
+    0deg,
+    #5c4a3f 0,
+    #5c4a3f 1px,
+    transparent 1px,
+    transparent 6px
+  );
+  opacity: 0.55;
+}
+
+:global(.theme-charcoal) .stick::after {
+  background-image: repeating-linear-gradient(
+    0deg,
+    #94a3b8 0,
+    #94a3b8 1px,
+    transparent 1px,
+    transparent 6px
+  );
+}
+
+/* ---------- Numbered scale along the length ----------
+   The flex column is rotated 90deg by individual spans so the
+   numbers read along the diagonal. */
+.ticks {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 50px 0;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.ticks span {
+  font-size: 9px;
+  font-weight: 700;
+  color: #5c4a3f;
+  transform: rotate(90deg);
+  font-family: var(--font-mono, monospace);
+}
+
+:global(.theme-charcoal) .ticks span {
+  color: #94a3b8;
+}
+
+/* ---------- Sweep keyframes ----------
+   Starts far off the top-left corner, ends far past the bottom-right
+   corner. The 45° rotation is held throughout so the stick always
+   travels along the diagonal. */
+@keyframes stickSweep {
+  0% {
+    transform: translate3d(-90vmax, -90vmax, 0) rotate(-45deg);
+  }
+  100% {
+    transform: translate3d(90vmax, 90vmax, 0) rotate(-45deg);
+  }
+}
+
+/* ---------- Responsive: tablet ---------- */
+@media (max-width: 1024px) {
+  .stick {
+    box-shadow:
+      0 0 14px rgba(0, 0, 0, 0.3),
+      0 0 28px rgba(218, 92, 53, 0.5);
+  }
+  :global(.theme-charcoal) .stick {
+    box-shadow:
+      0 0 16px rgba(0, 0, 0, 0.5),
+      0 0 32px rgba(56, 189, 248, 0.45);
+  }
+}
+
+/* ---------- Responsive: phone ---------- */
+@media (max-width: 640px) {
+  .stick {
+    /* Slightly thinner on phones so the diagonal doesn't dominate
+       the small viewport. */
+    width: 28px;
+    box-shadow:
+      0 0 10px rgba(0, 0, 0, 0.3),
+      0 0 22px rgba(218, 92, 53, 0.5);
+  }
+  :global(.theme-charcoal) .stick {
+    box-shadow:
+      0 0 12px rgba(0, 0, 0, 0.5),
+      0 0 26px rgba(56, 189, 248, 0.45);
+  }
+  .ticks span {
+    /* Smaller digits so they don't crowd the thin stick. */
+    font-size: 7px;
+  }
+  .ticks {
+    padding: 35px 0;
+  }
+}
+
+/* ---------- Accessibility: reduced motion ----------
+   Users with prefers-reduced-motion get a 1ms animation. The
+   browser still applies the ::view-transition-new(root) animation
+   (governed by globals.css), so the theme change is still
+   announced visually, just without the long sweep. */
+@media (prefers-reduced-motion: reduce) {
+  .stick {
+    --ruler-duration: 1ms;
+  }
+}

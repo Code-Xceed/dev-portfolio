@@ -1,0 +1,298 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(226, 218, 198, 0.82); /* Bumped opacity to compensate for removed blur */
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+:global(.theme-charcoal) .backdrop {
+  background: rgba(10, 10, 12, 0.88); /* Deep charcoal tint for dark theme */
+}
+
+.active {
+  pointer-events: auto;
+}
+
+.paper {
+  position: relative;
+  background-color: var(--paper-bg);
+  /* Elegant grid paper background */
+  background-image:
+    linear-gradient(90deg, rgba(var(--border-rgb), 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(var(--border-rgb), 0.035) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: center;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 32px 36px 32px 55px;
+  /* Extra left padding for binder holes */
+  box-shadow: 6px 8px 0 var(--border-color);
+  filter: var(--sketch-filter);
+  width: 90%;
+  max-width: 520px;
+  transform-origin: center;
+  opacity: 0;
+  /* CSS transition removed to avoid conflicts with GSAP */
+}
+
+/* Notebook paper red margin line */
+.paper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 45px;
+  width: 1px;
+  background: rgba(212, 163, 115, 0.45);
+  border-left: 0.5px dashed rgba(212, 163, 115, 0.7);
+  pointer-events: none;
+}
+
+:global(.theme-charcoal) .paper::before {
+  background: rgba(142, 202, 230, 0.35);
+  border-left-color: rgba(142, 202, 230, 0.5);
+}
+
+/* Punched binder rings holes showing desk beneath */
+.binderHoles {
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 40px 0;
+  pointer-events: none;
+}
+
+.hole {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  /* Shows desk beneath! */
+  border: 1.5px solid var(--border-color);
+  box-shadow: inset 1.5px 1.5px 3px rgba(60, 42, 33, 0.25);
+  transition: background 0.3s ease;
+}
+
+:global(.theme-charcoal) .hole {
+  box-shadow: inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Wobbly corner tape strips */
+.tape {
+  position: absolute;
+  width: 80px;
+  height: 20px;
+  background: rgba(250, 240, 215, 0.65);
+  border: 0.8px solid rgba(60, 42, 33, 0.15);
+  filter: var(--sketch-filter);
+  z-index: 3;
+  pointer-events: none;
+}
+
+:global(.theme-charcoal) .tape {
+  background: rgba(60, 60, 58, 0.55);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.tapeTl {
+  top: -8px;
+  left: -15px;
+  transform: rotate(-35deg);
+}
+
+.tapeTr {
+  top: -8px;
+  right: -15px;
+  transform: rotate(35deg);
+}
+
+.tapeBl {
+  bottom: -8px;
+  left: -15px;
+  transform: rotate(35deg);
+}
+
+.tapeBr {
+  bottom: -8px;
+  right: -15px;
+  transform: rotate(-35deg);
+}
+
+/* Close Button - stuck on paper */
+.closeBtn {
+  position: absolute;
+  top: -16px;
+  right: 25px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--paper-bg);
+  border: 1.8px solid var(--border-color);
+  color: var(--text-color);
+  font-weight: 900;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 0 var(--border-color);
+  filter: var(--sketch-filter);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.28), box-shadow 0.3s ease;
+  z-index: 10;
+}
+
+.closeBtn:hover {
+  transform: scale(1.15) rotate(9deg);
+  box-shadow: 3px 4px 0 var(--border-color);
+}
+
+.closeBtn:active {
+  transform: scale(0.95);
+  box-shadow: 1px 1px 0 var(--border-color);
+}
+
+/* Header design */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  border-bottom: 0.8px dashed rgba(var(--border-rgb), 0.18);
+  padding-bottom: 12px;
+}
+
+.brandVisual {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: var(--sketch-filter);
+}
+
+.brandVisual svg {
+  width: 100% !important;
+  height: 100% !important;
+  stroke: var(--border-color);
+}
+
+:global(.theme-charcoal) .brandVisual svg {
+  stroke: var(--text-color) !important;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.skillName {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-color);
+  font-family: var(--font-fira-code);
+}
+
+.metadata {
+  font-size: 8px;
+  color: var(--text-light);
+  letter-spacing: 0.8px;
+  font-family: var(--font-fira-code);
+}
+
+/* Guidelines inside popup body */
+.lines {
+  background-image: linear-gradient(rgba(var(--border-rgb), 0.08) 1px, transparent 1px);
+  background-size: 100% 28px;
+  background-position: 0 4px;
+  padding-top: 4px;
+  margin-bottom: 24px;
+  min-height: 112px;
+}
+
+.lines p {
+  font-size: 1.15rem;
+  line-height: 28px;
+  color: var(--text-color);
+  text-shadow: 0.3px 0.3px 0.5px rgba(var(--border-rgb), 0.15);
+  margin: 0;
+  word-wrap: break-word;
+  font-family: var(--font-caveat);
+}
+
+/* Footer technical specs */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  font-weight: bold;
+  color: var(--text-light);
+  border-top: 0.8px dashed rgba(var(--border-rgb), 0.15);
+  padding-top: 10px;
+  opacity: 0.8;
+  font-family: var(--font-fira-code);
+}
+
+/* Circular blueprint stamped seal in bottom-right corner */
+.stampSeal {
+  position: absolute;
+  bottom: 18px;
+  right: 24px;
+  width: 80px;
+  height: 80px;
+  opacity: 1;
+  pointer-events: none;
+  transform: rotate(-10deg);
+  z-index: 1;
+}
+
+/* Mobile responsive popup overrides */
+@media (max-width: 768px) {
+  .paper {
+    max-width: min(94vw, 380px) !important;
+    padding: 24px 20px 24px 44px !important;
+    box-shadow: 4px 4px 0 var(--border-color) !important;
+  }
+  .paper::before {
+    left: 35px !important;
+  }
+  .binderHoles {
+    left: 10px !important;
+    padding: 30px 0 !important;
+  }
+  .hole {
+    width: 9px !important;
+    height: 9px !important;
+  }
+  .closeBtn {
+    top: -12px !important;
+    right: 15px !important;
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 11px !important;
+  }
+  .skillName {
+    font-size: 18px !important;
+  }
+  .lines p {
+    font-size: 0.95rem !important;
+    line-height: 24px !important;
+  }
+  .stampSeal {
+    width: 60px !important;
+    height: 60px !important;
+    bottom: 12px !important;
+    right: 12px !important;
+  }
+}

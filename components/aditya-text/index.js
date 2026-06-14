@@ -10,7 +10,7 @@ export default function AdityaText() {
   const firstName = "ADITYA";
 
   const handleLetterHover = (e, index) => {
-    // Play mechanical keyboard sound for keys A-Z (ASCII values 65-90)
+    // Avoid impure Math.random "during render" lint by generating inside event handlers only.
     const randomKey = 65 + Math.floor(Math.random() * 26);
     playKeyboardKey(randomKey);
 

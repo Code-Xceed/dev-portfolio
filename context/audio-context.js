@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useRef } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef, useCallback } from "react";
 import { DESIGN_SYSTEM } from "../config/design-system";
 
 const AudioContext = createContext({
@@ -49,6 +49,7 @@ class HTML5AudioPool {
 
 export function AudioProvider({ children }) {
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const soundEnabledRef = useRef(true);
   const audioCtxRef = useRef(null);
   const keyboardInitialized = useRef(false);
   const keyboardConfig = useRef(null);
@@ -63,16 +64,43 @@ export function AudioProvider({ children }) {
     const savedSound = localStorage.getItem("portfolio-sound");
     if (savedSound === "false") {
       setSoundEnabled(false);
+      soundEnabledRef.current = false;
     }
   }, []);
 
-  const toggleSound = () => {
+  const toggleSound = useCallback(() => {
     setSoundEnabled((prev) => {
       const next = !prev;
+      soundEnabledRef.current = next;
       localStorage.setItem("portfolio-sound", next ? "true" : "false");
+      
+      if (!next) {
+        // Stop all currently playing HTML5 audio
+        Object.values(pools.current).forEach(pool => {
+          if (pool && pool.pool) {
+            pool.pool.forEach(audio => {
+              if (audio && !audio.paused) {
+                audio.pause();
+                audio.currentTime = 0;
+              }
+            });
+          }
+        });
+        
+        // Mute Web Audio API
+        if (audioCtxRef.current && audioCtxRef.current.state === "running") {
+          audioCtxRef.current.suspend();
+        }
+      } else {
+        // Resume Web Audio API
+        if (audioCtxRef.current && audioCtxRef.current.state === "suspended") {
+          audioCtxRef.current.resume();
+        }
+      }
+      
       return next;
     });
-  };
+  }, []);
 
   const initPools = () => {
     if (Object.keys(pools.current).length > 0) return;
@@ -81,8 +109,9 @@ export function AudioProvider({ children }) {
       hover: new HTML5AudioPool("/audios/sfx/chime2.ogg", 0.12, 12),
       drag: new HTML5AudioPool("/audios/sfx/drag.ogg", 0.3, 4),
       plane: new HTML5AudioPool("/audios/sfx/chime.ogg", 0.45, 4),
-      emoji1: new HTML5AudioPool("/audios/sfx/318079656_nw_prev.m4a", 0.5, 4),
-      emoji2: new HTML5AudioPool("/audios/sfx/318527441_nw_prev.m4a", 0.5, 4),
+      emoji1: new HTML5AudioPool("/audios/sfx/315579920_nw_prev.m4a", 0.5, 4),
+      emoji2: new HTML5AudioPool("/audios/sfx/318079656_nw_prev.m4a", 0.5, 4),
+      emoji3: new HTML5AudioPool("/audios/sfx/318527441_nw_prev.m4a", 0.5, 4),
       hold: new HTML5AudioPool("/audios/sfx/hold.ogg", 0.45, 4),
       bounce1: new HTML5AudioPool("/audios/sfx/cartoon-boing-7-sound-effect-151311470_nw_prev.m4a", 0.5, 4),
       bounce2: new HTML5AudioPool("/audios/sfx/video-game-jump-sound-14-sound-effect-033920106_nw_prev.m4a", 0.4, 4),
@@ -117,7 +146,7 @@ export function AudioProvider({ children }) {
     }
   };
 
-  const unlockAudio = () => {
+  const unlockAudio = useCallback(() => {
     if (unlocked.current) return;
     initPools();
 
@@ -129,7 +158,7 @@ export function AudioProvider({ children }) {
       }
     }
 
-    if (audioCtxRef.current && audioCtxRef.current.state === "suspended") {
+    if (audioCtxRef.current && audioCtxRef.current.state === "suspended" && soundEnabledRef.current) {
       audioCtxRef.current.resume();
     }
 
@@ -170,12 +199,26 @@ export function AudioProvider({ children }) {
     if (allUnlocked && Object.keys(pools.current).length > 0 && (!audioCtxRef.current || audioCtxRef.current.state === "running")) {
       unlocked.current = true;
     }
-  };
+  }, []);
 
   // Play normal sfx
-  const playSFX = (name, customRate = null) => {
-    if (!soundEnabled) return;
+  const playSFX = useCallback((name, customRate = null) => {
+    if (!soundEnabledRef.current) return;
     initPools();
+
+    if (name === "bounce") {
+      const bouncePools = ["bounce1", "bounce2", "bounce3"];
+      const selected = bouncePools[Math.floor(Math.random() * bouncePools.length)];
+      pools.current[selected]?.play();
+      return;
+    }
+
+    if (name === "emoji") {
+      const emojiPools = ["emoji1", "emoji2", "emoji3"];
+      const selected = emojiPools[Math.floor(Math.random() * emojiPools.length)];
+      pools.current[selected]?.play();
+      return;
+    }
 
     const pool = pools.current[name];
     if (!pool) return;
@@ -193,22 +236,14 @@ export function AudioProvider({ children }) {
       const pentatonicMultipliers = [1.0, 1.125, 1.25, 1.5, 1.667, 2.0];
       const rate = pentatonicMultipliers[hoverStreak.current];
       pool.play(rate);
-    } else if (name === "bounce") {
-      const bouncePools = ["bounce1", "bounce2", "bounce3"];
-      const selected = bouncePools[Math.floor(Math.random() * bouncePools.length)];
-      pools.current[selected]?.play();
-    } else if (name === "emoji") {
-      const emojiPools = ["emoji1", "emoji2"];
-      const selected = emojiPools[Math.floor(Math.random() * emojiPools.length)];
-      pools.current[selected]?.play();
     } else {
       pool.play(customRate || 1.0);
     }
-  };
+  }, []);
 
   // Play mechanical keyboard keystroke
-  const playKeyboardKey = (keyCode) => {
-    if (!soundEnabled || !keyCode) return;
+  const playKeyboardKey = useCallback((keyCode) => {
+    if (!soundEnabledRef.current || !keyCode) return;
     if (!keyboardInitialized.current) {
       initKeyboard();
       return;
@@ -254,7 +289,7 @@ export function AudioProvider({ children }) {
     } catch (e) {
       // Swallowed node error
     }
-  };
+  }, []);
 
   // Set up click/gesture triggers to unlock audio context dynamically
   useEffect(() => {
