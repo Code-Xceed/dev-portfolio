@@ -86,15 +86,15 @@
 @media (max-width: 768px) {
   .scrollContainer {
     height: auto !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch;
+    width: 100% !important;
+    overflow: visible !important;
   }
 
   .scrollTrack {
     flex-direction: column !important;
     width: 100% !important;
     height: auto !important;
+    transform: none !important;
   }
 
   .scrollTrack > div,
@@ -102,9 +102,9 @@
     width: 100% !important;
     height: auto !important;
     min-height: auto !important;
-    padding: 20px 10px 60px 10px !important;
-    margin-bottom: 10px !important;
-    flex-shrink: unset !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
   }
 
   .navDots {

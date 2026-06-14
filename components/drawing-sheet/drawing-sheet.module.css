@@ -66,14 +66,10 @@
     filter: none !important;
   }
   .scrollContainer {
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
+    overflow: visible !important;
     height: auto !important;
-    max-height: 100dvh !important;
     padding: 0 !important;
     mask-image: none !important;
     -webkit-mask-image: none !important;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
   }
 }
