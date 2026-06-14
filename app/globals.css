@@ -22,6 +22,14 @@ body {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  html,
+  body {
+    height: auto;
+    overflow: visible;
+  }
+}
+
 /* ==========================================================================
    REFINED CUSTOM CURSOR SYSTEM
    ========================================================================== */

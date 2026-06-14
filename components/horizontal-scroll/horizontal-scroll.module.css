@@ -85,9 +85,10 @@
 /* Mobile (320px-768px) */
 @media (max-width: 768px) {
   .scrollContainer {
-    height: auto !important;
+    height: 100% !important;
     width: 100% !important;
-    overflow: visible !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
   }
 
   .scrollTrack {
@@ -105,6 +106,11 @@
     padding: 0 !important;
     margin: 0 !important;
     flex-shrink: 0 !important;
+  }
+
+  /* Override inline styles on page panels */
+  .scrollTrack > div > div {
+    height: auto !important;
   }
 
   .navDots {
