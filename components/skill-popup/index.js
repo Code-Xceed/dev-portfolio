@@ -7,16 +7,22 @@ import styles from "./skill-popup.module.css";
 export default function SkillPopup({ skill, triggerRect, onClose }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSkill, setActiveSkill] = useState(null);
+  const [prevSkill, setPrevSkill] = useState(null);
   const paperRef = useRef(null);
   const backdropRef = useRef(null);
   const savedOverflowRef = useRef("");
 
-  // Sync skill prop to local state with open/close animations
-  useEffect(() => {
+  if (skill !== prevSkill) {
+    setPrevSkill(skill);
     if (skill) {
       setActiveSkill(skill);
       setIsOpen(true);
+    }
+  }
 
+  // Sync skill prop to local state with open/close animations
+  useEffect(() => {
+    if (skill) {
       // Prevent background scrolling while open
       savedOverflowRef.current = document.body.style.overflow;
       document.body.style.overflow = "hidden";

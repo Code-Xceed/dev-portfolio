@@ -9,7 +9,7 @@ export default function AdityaText() {
   const { playSFX, playKeyboardKey } = useAudio();
   const firstName = "ADITYA";
 
-  const handleLetterHover = (e, index) => {
+  const handleLetterHover = React.useCallback((e, index) => {
     // Avoid impure Math.random "during render" lint by generating inside event handlers only.
     const randomKey = 65 + Math.floor(Math.random() * 26);
     playKeyboardKey(randomKey);
@@ -36,9 +36,9 @@ export default function AdityaText() {
         ease: "elastic.out(1, 0.4)",
         clearProps: "color"
       });
-  };
+  }, [playKeyboardKey]);
 
-  const handleLastNameHover = (e) => {
+  const handleLastNameHover = React.useCallback((e) => {
     const randomKey = 65 + Math.floor(Math.random() * 26);
     playKeyboardKey(randomKey);
 
@@ -61,7 +61,8 @@ export default function AdityaText() {
         ease: "elastic.out(1, 0.45)",
         clearProps: "color"
       });
-  };
+  }, [playKeyboardKey]);
+
 
   return (
     <div className={styles.container}>

@@ -41,8 +41,11 @@ export function ThemeProvider({ children }) {
     try {
       const saved = localStorage.getItem("portfolio-theme");
       if (saved === "charcoal") {
-        setTheme("charcoal");
-        document.body.classList.add("theme-charcoal");
+        const timer = setTimeout(() => {
+          setTheme("charcoal");
+          document.body.classList.add("theme-charcoal");
+        }, 0);
+        return () => clearTimeout(timer);
       }
     } catch (e) {
       // localStorage may be blocked; non-fatal.

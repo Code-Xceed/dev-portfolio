@@ -13,8 +13,7 @@ export default function PolaroidDeck() {
   const [draggingActive, setDraggingActive] = useState(false);
   
   const activeIndexRef = useRef(0);
-  const cardRefsStore = useRef([React.createRef(), React.createRef(), React.createRef()]);
-  const cardRefs = cardRefsStore.current;
+  const cardRefs = useRef([]);
 
   // State refs for dragging coords
   const isDraggingRef = useRef(false);
@@ -28,9 +27,9 @@ export default function PolaroidDeck() {
   useEffect(() => {
     activeIndexRef.current = depths.indexOf(0);
     // Clear all inline styles only after React commits the new DOM attributes (prevents flickering)
-    cardRefs.forEach((ref) => {
-      if (ref.current) {
-        gsap.set(ref.current, { clearProps: "all" });
+    cardRefs.current.forEach((el) => {
+      if (el) {
+        gsap.set(el, { clearProps: "all" });
       }
     });
   }, [depths]);
@@ -47,7 +46,7 @@ export default function PolaroidDeck() {
 
     playSFX("hold");
 
-    const activeCard = cardRefs[activeIndexRef.current].current;
+    const activeCard = cardRefs.current[activeIndexRef.current];
     if (activeCard) {
       activeCard.style.cursor = "grabbing";
     }
@@ -68,7 +67,7 @@ export default function PolaroidDeck() {
     dragVelocityRef.current = { x: vx, y: vy };
     dragLastRef.current = { x: clientX, y: clientY };
 
-    const activeCard = cardRefs[activeIndexRef.current].current;
+    const activeCard = cardRefs.current[activeIndexRef.current];
     if (activeCard) {
       // Dynamic rotation with slight inertia
       const angle = baseAngle + currentX * 0.1;
@@ -86,7 +85,7 @@ export default function PolaroidDeck() {
     setIsDragging(false);
     setDraggingActive(false);
 
-    const activeCard = cardRefs[activeIndexRef.current].current;
+    const activeCard = cardRefs.current[activeIndexRef.current];
     if (!activeCard) return;
 
     activeCard.style.cursor = "grab";
@@ -114,10 +113,10 @@ export default function PolaroidDeck() {
       }
 
       // Animate next cards immediately to bridge depths gap (slower and calmer)
-      const nextActiveIndex = depths.indexOf(1);
-      const nextActiveCard = cardRefs[nextActiveIndex].current;
-      if (nextActiveCard) {
-        gsap.to(nextActiveCard, {
+      const nextTopIndex = depths.indexOf(1);
+      const nextTopCard = cardRefs.current[nextTopIndex];
+      if (nextTopCard) {
+        gsap.to(nextTopCard, {
           x: 0,
           y: 0,
           scale: 1.0,
@@ -128,7 +127,7 @@ export default function PolaroidDeck() {
       }
 
       const nextMiddleIndex = depths.indexOf(2);
-      const nextMiddleCard = cardRefs[nextMiddleIndex].current;
+      const nextMiddleCard = cardRefs.current[nextMiddleIndex];
       if (nextMiddleCard) {
         gsap.to(nextMiddleCard, {
           x: 12,
@@ -250,7 +249,7 @@ export default function PolaroidDeck() {
       <div className={styles.polaroidDeck}>
         {/* Card 1: Origami Crane */}
         <div
-          ref={cardRefs[0]}
+          ref={(el) => { cardRefs.current[0] = el; }}
           className={`${styles.polaroidCard} ${transitionClass}`}
           data-depth={depths[0]}
           onMouseDown={depths[0] === 0 ? onMouseDown : undefined}
@@ -280,7 +279,7 @@ export default function PolaroidDeck() {
 
         {/* Card 2: Cyber Mesh */}
         <div
-          ref={cardRefs[1]}
+          ref={(el) => { cardRefs.current[1] = el; }}
           className={`${styles.polaroidCard} ${transitionClass}`}
           data-depth={depths[1]}
           onMouseDown={depths[1] === 0 ? onMouseDown : undefined}
@@ -306,7 +305,7 @@ export default function PolaroidDeck() {
 
         {/* Card 3: Celestial Rings */}
         <div
-          ref={cardRefs[2]}
+          ref={(el) => { cardRefs.current[2] = el; }}
           className={`${styles.polaroidCard} ${transitionClass}`}
           data-depth={depths[2]}
           onMouseDown={depths[2] === 0 ? onMouseDown : undefined}

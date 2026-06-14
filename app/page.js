@@ -36,6 +36,7 @@ export default function Home() {
             <div className="horizontal-page-panel">
               <div
                 style={{
+                  width: "100%",
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
@@ -53,7 +54,7 @@ export default function Home() {
 
             {/* Screen 2: Projects */}
             <div className="horizontal-page-panel">
-              <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
                 <SkillsCarousel revealed={revealed} activePage={activePage} />
                 <ProjectsSection revealed={revealed} activePage={activePage} />
               </div>

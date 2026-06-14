@@ -63,8 +63,11 @@ export function AudioProvider({ children }) {
   useEffect(() => {
     const savedSound = localStorage.getItem("portfolio-sound");
     if (savedSound === "false") {
-      setSoundEnabled(false);
-      soundEnabledRef.current = false;
+      const timer = setTimeout(() => {
+        setSoundEnabled(false);
+        soundEnabledRef.current = false;
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, []);
 

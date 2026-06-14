@@ -183,6 +183,11 @@ export default function ProjectsSection({ revealed, activePage }) {
     activePageRef.current = activePage;
   }, [activePage]);
 
+  // Set initial performance.now() inside useEffect to keep render pure
+  useEffect(() => {
+    lastAdvanceTimeRef.current = performance.now();
+  }, []);
+
   // Kinetic throw physics refs
   const isDraggingRef = useRef(false);
   const startYRef = useRef(0);
@@ -193,7 +198,7 @@ export default function ProjectsSection({ revealed, activePage }) {
   const lastTimeRef = useRef(0);
   const autoSpinRef = useRef(true);
   const resumeTimeoutRef = useRef(null);
-  const lastAdvanceTimeRef = useRef(performance.now());
+  const lastAdvanceTimeRef = useRef(0);
   const isCanvasHoveredRef = useRef(false);
 
   // Drag check threshold
